@@ -1,0 +1,137 @@
+{
+  "viagens": [
+    {
+      "slug": "gramado-canela-outono",
+      "titulo": "Gramado & Canela — Outono nas Montanhas",
+      "chamada": "Chocolate, vinho e o clima mais charmoso da Serra Gaúcha.",
+      "destino": { "nome": "Gramado", "cidade": "Gramado", "uf": "RS" },
+      "dataPartida": "2026-05-14",
+      "dataRetorno": "2026-05-18",
+      "dias": 5,
+      "precoAPartir": 1890,
+      "vagasRestantes": 12,
+      "situacao": "ABERTA",
+      "destaque": true,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80",
+        "largura": 2000,
+        "altura": 1333,
+        "legenda": "Estrada e horizonte — próxima saída"
+      }
+    },
+    {
+      "slug": "bonito-ms-inverno",
+      "titulo": "Bonito — Águas Cristalinas",
+      "chamada": "Flutuação, grutas e natureza em alta definição.",
+      "destino": { "nome": "Bonito", "cidade": "Bonito", "uf": "MS" },
+      "dataPartida": "2026-07-10",
+      "dataRetorno": "2026-07-15",
+      "dias": 6,
+      "precoAPartir": 2490,
+      "vagasRestantes": 4,
+      "situacao": "ABERTA",
+      "destaque": true,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": "Águas transparentes"
+      }
+    },
+    {
+      "slug": "campos-jordao-fim-de-semana",
+      "titulo": "Campos do Jordão — Fim de Semana",
+      "chamada": "Clima europeu a poucas horas de São Paulo.",
+      "destino": { "nome": "Campos do Jordão", "cidade": "Campos do Jordão", "uf": "SP" },
+      "dataPartida": "2026-06-06",
+      "dataRetorno": "2026-06-08",
+      "dias": 3,
+      "precoAPartir": 980,
+      "vagasRestantes": 0,
+      "situacao": "ESGOTADA",
+      "destaque": false,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": "Montanha e névoa"
+      }
+    },
+    {
+      "slug": "foz-iguacu-2025",
+      "titulo": "Foz do Iguaçu — Cataratas",
+      "chamada": "Uma das sete maravilhas naturais do mundo.",
+      "destino": { "nome": "Foz do Iguaçu", "cidade": "Foz do Iguaçu", "uf": "PR" },
+      "dataPartida": "2025-11-12",
+      "dataRetorno": "2025-11-16",
+      "dias": 5,
+      "precoAPartir": null,
+      "vagasRestantes": null,
+      "situacao": "REALIZADA",
+      "destaque": false,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": "Cataratas do Iguaçu"
+      }
+    },
+    {
+      "slug": "porto-seguro-verao",
+      "titulo": "Porto Seguro — Verão na Bahia",
+      "chamada": "Praia, história e noite baiana.",
+      "destino": { "nome": "Porto Seguro", "cidade": "Porto Seguro", "uf": "BA" },
+      "dataPartida": "2025-01-18",
+      "dataRetorno": "2025-01-25",
+      "dias": 8,
+      "precoAPartir": null,
+      "vagasRestantes": null,
+      "situacao": "REALIZADA",
+      "destaque": false,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 900,
+        "legenda": "Costa baiana"
+      }
+    },
+    {
+      "slug": "gramado-inverno-2024",
+      "titulo": "Gramado — Inverno na Serra",
+      "chamada": "Chocolate quente e o friozinho da Serra Gaúcha.",
+      "destino": { "nome": "Gramado", "cidade": "Gramado", "uf": "RS" },
+      "dataPartida": "2024-07-20",
+      "dataRetorno": "2024-07-24",
+      "dias": 5,
+      "precoAPartir": null,
+      "vagasRestantes": null,
+      "situacao": "REALIZADA",
+      "destaque": false,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1486870591958-9b9d0d1b2e54?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": "Serra Gaúcha"
+      }
+    },
+    {
+      "slug": "campos-jordao-2024",
+      "titulo": "Campos do Jordão — Temporada",
+      "chamada": "Boulevard, fondue e mirantes.",
+      "destino": { "nome": "Campos do Jordão", "cidade": "Campos do Jordão", "uf": "SP" },
+      "dataPartida": "2024-08-10",
+      "dataRetorno": "2024-08-12",
+      "dias": 3,
+      "precoAPartir": null,
+      "vagasRestantes": null,
+      "situacao": "REALIZADA",
+      "destaque": false,
+      "capa": {
+        "src": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": "Montanha"
+      }
+    }
+  ]
+}

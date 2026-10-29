@@ -1,0 +1,44 @@
+{
+  "slug": "porto-seguro-verao",
+  "titulo": "Porto Seguro — Verão na Bahia",
+  "chamada": "Praia, história e noite baiana.",
+  "destino": { "nome": "Porto Seguro", "cidade": "Porto Seguro", "uf": "BA" },
+  "dataPartida": "2025-01-18",
+  "dataRetorno": "2025-01-25",
+  "dias": 8,
+  "precoAPartir": null,
+  "vagasRestantes": null,
+  "situacao": "REALIZADA",
+  "destaque": false,
+  "capa": {
+    "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+    "largura": 1600,
+    "altura": 900,
+    "legenda": "Costa baiana"
+  },
+  "descricao": "Verão com a turma Lu&Cia em Porto Seguro: praias, Centro Histórico e passeios pela costa.",
+  "roteiro": [],
+  "pontosTuristicos": [
+    { "nome": "Centro Histórico", "descricao": "Marco do Descobrimento e ruas históricas.", "ordem": 1 },
+    { "nome": "Praia do Espelho", "descricao": "Costa sul com piscinas naturais (passeio opcional).", "ordem": 2 },
+    { "nome": "Passarela do Álcool", "descricao": "Vida noturna e gastronomia local.", "ordem": 3 }
+  ],
+  "inclui": [],
+  "naoInclui": [],
+  "embarque": null,
+  "fotos": [
+    {
+      "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 900,
+      "legenda": "Praia"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": "Costa"
+    }
+  ],
+  "whatsappLink": "https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20a%20galeria%20de%20Porto%20Seguro."
+}

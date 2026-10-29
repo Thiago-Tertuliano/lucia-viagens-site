@@ -1,103 +1,163 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { TripCard } from '@/components/trip-card'
+import { SectionHeading } from '@/components/section-heading'
+import { getSite, getViagens, viagensAtivas, viagensRealizadas } from '@/lib/content'
 
-export default function Home() {
+const HERO_IMAGE =
+  'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80'
+
+export default async function HomePage() {
+  const [site, todas] = await Promise.all([getSite(), getViagens()])
+  const proximas = viagensAtivas(todas).slice(0, 3)
+  const realizadas = viagensRealizadas(todas).slice(0, 3)
+  const destaque = proximas[0]
+  const heroImage = destaque?.capa?.src || HERO_IMAGE
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <>
+      <section className="relative overflow-hidden bg-navy text-cream">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={heroImage}
+          alt={destaque?.capa?.legenda || 'Viagens Lu&Cia'}
+          className="absolute inset-0 h-full w-full object-cover"
+          fetchPriority="high"
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#12263a]/85 via-[#12263a]/40 to-[#12263a]/30" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="relative container-page flex min-h-[72svh] flex-col justify-end py-16 md:min-h-[78svh] md:py-20">
+          <div className="max-w-2xl space-y-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d4a456]">
+              {site.nome}
+            </p>
+            <h1 className="font-display text-[clamp(2.2rem,4.6vw,3.55rem)] font-bold leading-[1.06] tracking-tight text-white">
+              Roteiros claros. Agenda atualizada. Atendimento direto.
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-white/90 md:text-lg">
+              Consulte saídas, itinerários dia a dia e galerias das viagens realizadas.
+              Interesse e reserva pelo WhatsApp — sem checkout no site.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/viagens" className="btn btn-light">
+                Ver agenda de viagens
+              </Link>
+              <Link href="/guia" className="btn btn-ghost border-cream/40 text-cream">
+                Como funciona
+              </Link>
+              {site.contato.whatsappLink && (
+                <a
+                  href={site.contato.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-accent"
+                >
+                  Falar no WhatsApp
+                </a>
+              )}
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      <section className="section-pad">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Agenda"
+            title="Próximas viagens"
+            description="Saídas abertas e confirmadas. Conteúdo sincronizado com o sistema de gestão."
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          {proximas.length === 0 ? (
+            <p className="text-ink-soft">Nenhuma viagem publicada no momento.</p>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {proximas.map((v) => (
+                <TripCard key={v.slug} viagem={v} />
+              ))}
+            </div>
+          )}
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/viagens" className="btn btn-primary">
+              Ver todas
+            </Link>
+            <Link href="/guia" className="btn border border-line bg-surface">
+              Guia do passageiro
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-surface section-pad">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <SectionHeading
+              eyebrow="Empresa"
+              title={site.sobre.titulo || 'Quem somos'}
+              description={
+                site.sobre.texto?.split(/\n\s*\n/)[0] ||
+                'Excursões com acompanhamento completo e comunicação clara com cada passageiro.'
+              }
+            />
+            <Link href="/sobre" className="btn btn-primary">
+              Sobre a Lu&Cia
+            </Link>
+          </div>
+          <div className="overflow-hidden border border-line">
+            {site.sobre.foto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={site.sobre.foto}
+                alt={site.sobre.titulo || site.nome}
+                className="aspect-[4/3] w-full object-cover"
+              />
+            ) : (
+              <div className="flex aspect-[4/3] items-center justify-center bg-cream-deep text-muted">
+                Lu&Cia Viagens
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {realizadas.length > 0 && (
+        <section className="section-pad">
+          <div className="container-page">
+            <SectionHeading
+              eyebrow="Galeria"
+              title="Viagens realizadas"
+              description="Memórias das saídas que já aconteceram — explore também no mapa 3D."
+            />
+            <div className="grid gap-4 sm:grid-cols-3">
+              {realizadas.map((v) => (
+                <Link
+                  key={v.slug}
+                  href={`/viagens/${v.slug}`}
+                  className="media-zoom group relative aspect-[4/5] overflow-hidden bg-bg-deep"
+                >
+                  {v.capa && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={v.capa.src}
+                      alt={v.titulo}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/75 via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4 text-cream">
+                    <p className="font-display text-lg leading-snug">{v.titulo}</p>
+                    <p className="mt-1 text-xs text-cream/70">{v.destino.nome}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-10">
+              <Link href="/galeria" className="btn btn-primary">
+                Ver galeria e mapa
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  )
 }

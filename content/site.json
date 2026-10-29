@@ -1,0 +1,20 @@
+{
+  "nome": "Lu&Cia Viagens",
+  "slogan": "Roteiros claros · Agenda atualizada · Atendimento direto",
+  "sobre": {
+    "titulo": "Viagens pensadas do embarque ao retorno",
+    "texto": "A Lu&Cia Viagens organiza excursões e roteiros com acompanhamento completo: roteiro claro, equipe preparada e comunicação transparente com cada passageiro.\n\nEste site é o nosso canal de conteúdo — próximas saídas, galerias das viagens realizadas e tudo o que você precisa saber antes de falar conosco.",
+    "foto": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80"
+  },
+  "contato": {
+    "whatsapp": "5511999999999",
+    "whatsappLink": "https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.",
+    "telefone": "(11) 99999-9999",
+    "email": "contato@luciaviagens.com.br",
+    "instagram": "https://instagram.com/luciaviagens",
+    "facebook": "https://facebook.com/luciaviagens",
+    "endereco": "São Paulo, SP"
+  },
+  "cnpj": null,
+  "cadastur": null
+}

@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lu&Cia Viagens — Site público
 
-## Getting Started
+Site expositor da **Lu&Cia Viagens**: próximas saídas, roteiros, galerias e contato via WhatsApp.  
+Sem venda online — o conteúdo é publicado pelo **LC-Manager** (aba Web).
 
-First, run the development server:
+Desenvolvido pela [Axellion](https://axellion.com.br/).
+
+## Stack
+
+- Next.js 15 (App Router) + TypeScript + Tailwind CSS 4
+- Export estático (`output: 'export'`) → pasta `out/`
+- Hospedagem prevista: **Netlify** (rebuild a cada commit do LC-Manager)
+
+## Conteúdo
+
+| Arquivo | Uso |
+|---------|-----|
+| `content/site.json` | Empresa, sobre, contatos |
+| `content/viagens.json` | Lista resumida |
+| `content/viagens/<slug>.json` | Página completa |
+| `public/web/...` | Fotos (o sistema só altera esta pasta + `content/`) |
+
+## Desenvolvimento
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Gera o site estático em `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Publicação com o LC-Manager
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Crie um repositório GitHub e conecte à Netlify (build: `npm run build`, publish: `out`).
+2. No LC-Manager → **Web** → configure `usuario/repositorio`, branch e token.
+3. Publique viagens e clique em **Publicar no site**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O sistema atualiza apenas `content/` e `public/web/`; o código do site permanece intacto.

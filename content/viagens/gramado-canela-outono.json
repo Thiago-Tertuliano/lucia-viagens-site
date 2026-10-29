@@ -1,0 +1,81 @@
+{
+  "slug": "gramado-canela-outono",
+  "titulo": "Gramado & Canela — Outono nas Montanhas",
+  "chamada": "Chocolate, vinho e o clima mais charmoso da Serra Gaúcha.",
+  "destino": { "nome": "Gramado", "cidade": "Gramado", "uf": "RS" },
+  "dataPartida": "2026-05-14",
+  "dataRetorno": "2026-05-18",
+  "dias": 5,
+  "precoAPartir": 1890,
+  "vagasRestantes": 12,
+  "situacao": "ABERTA",
+  "destaque": true,
+  "capa": {
+    "src": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80",
+    "largura": 2000,
+    "altura": 1333,
+    "legenda": "Estrada e horizonte — próxima saída"
+  },
+  "descricao": "Cinco dias na Serra Gaúcha com hospedagem selecionada, passeios clássicos e tempo livre para viver Gramado e Canela no ritmo certo.\n\nRoteiro pensado para quem quer conforto sem perder a experiência: gastronomia, mirantes e o charme típico da região.",
+  "roteiro": [
+    {
+      "dia": 1,
+      "titulo": "Embarque e chegada em Gramado",
+      "descricao": "Saída pela manhã, paradas programadas e check-in no hotel. Noite livre no centro."
+    },
+    {
+      "dia": 2,
+      "titulo": "Canela e Parque do Caracol",
+      "descricao": "Cascata do Caracol, Catedral de Pedra e almoço típico. Retorno a Gramado no fim da tarde."
+    },
+    {
+      "dia": 3,
+      "titulo": "Mini Mundo e Rua Coberta",
+      "descricao": "Manhã no Mini Mundo. Tarde livre para chocolates, compras e fotos na Rua Coberta."
+    },
+    {
+      "dia": 4,
+      "titulo": "Vale dos Vinhedos",
+      "descricao": "Excursão opcional às vinícolas da região, degustação e paisagem de outono."
+    },
+    {
+      "dia": 5,
+      "titulo": "Retorno",
+      "descricao": "Café da manhã, check-out e viagem de volta com chegada prevista no fim do dia."
+    }
+  ],
+  "inclui": [
+    "Transporte ida e volta em ônibus executivo",
+    "4 diárias com café da manhã",
+    "Guia acompanhante Lu&Cia",
+    "Ingresso Parque do Caracol",
+    "Seguro viagem básico"
+  ],
+  "naoInclui": [
+    "Almoços e jantares",
+    "Passeios opcionais",
+    "Despesas pessoais"
+  ],
+  "embarque": { "local": "Terminal Rodoviário — Portão A", "horario": "06:30" },
+  "fotos": [
+    {
+      "src": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2000&q=80",
+      "largura": 2000,
+      "altura": 1333,
+      "legenda": "Estrada e horizonte"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1486870591958-9b9d0d1b2e54?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": "Montanhas"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": "Paisagem de altitude"
+    }
+  ],
+  "whatsappLink": "https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20interesse%20na%20viagem%20Gramado%20%26%20Canela%20(14%2F05%2F2026)."
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "bonito-ms-inverno",
+  "titulo": "Bonito — Águas Cristalinas",
+  "chamada": "Flutuação, grutas e natureza em alta definição.",
+  "destino": { "nome": "Bonito", "cidade": "Bonito", "uf": "MS" },
+  "dataPartida": "2026-07-10",
+  "dataRetorno": "2026-07-15",
+  "dias": 6,
+  "precoAPartir": 2490,
+  "vagasRestantes": 4,
+  "situacao": "ABERTA",
+  "destaque": true,
+  "capa": {
+    "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+    "largura": 1600,
+    "altura": 1067,
+    "legenda": "Águas transparentes"
+  },
+  "descricao": "Seis dias em Bonito com os clássicos da ecoturismo: flutuação, gruta e mirantes. Ritmo equilibrado entre aventura e descanso.",
+  "roteiro": [
+    { "dia": 1, "titulo": "Chegada a Bonito", "descricao": "Embarque, viagem e acomodação. Briefing do roteiro à noite." },
+    { "dia": 2, "titulo": "Rio da Prata", "descricao": "Flutuação nas águas cristalinas com guia local credenciado." },
+    { "dia": 3, "titulo": "Gruta do Lago Azul", "descricao": "Visita à gruta e tarde livre no centro." },
+    { "dia": 4, "titulo": "Buraco das Araras", "descricao": "Observação de araras e mirante natural." },
+    { "dia": 5, "titulo": "Balneário e tempo livre", "descricao": "Manhã em balneário. Tarde livre para compras e fotos." },
+    { "dia": 6, "titulo": "Retorno", "descricao": "Check-out e viagem de volta." }
+  ],
+  "pontosTuristicos": [
+    {
+      "nome": "Rio da Prata",
+      "descricao": "Flutuação em águas cristalinas com acompanhamento de guia local.",
+      "ordem": 1
+    },
+    {
+      "nome": "Gruta do Lago Azul",
+      "descricao": "Visita guiada à gruta e formação lacustre subterrânea.",
+      "ordem": 2
+    },
+    {
+      "nome": "Buraco das Araras",
+      "descricao": "Dolina natural com observação de araras e mirante.",
+      "ordem": 3
+    },
+    {
+      "nome": "Centro de Bonito",
+      "descricao": "Tempo livre para comércio, fotos e gastronomia local.",
+      "ordem": 4
+    }
+  ],
+  "inclui": [
+    "Transporte executivo",
+    "5 diárias com café",
+    "Passeios listados no roteiro",
+    "Guia acompanhante"
+  ],
+  "naoInclui": ["Refeições não mencionadas", "Bebidas", "Extras pessoais"],
+  "embarque": { "local": "Shopping Center Norte — Estacionamento", "horario": "20:00" },
+  "fotos": [
+    {
+      "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": null
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": "Água cristalina"
+    }
+  ],
+  "whatsappLink": "https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20interesse%20na%20viagem%20Bonito%20(10%2F07%2F2026)."
+}

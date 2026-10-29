@@ -1,0 +1,37 @@
+{
+  "slug": "campos-jordao-fim-de-semana",
+  "titulo": "Campos do Jordão — Fim de Semana",
+  "chamada": "Clima europeu a poucas horas de São Paulo.",
+  "destino": { "nome": "Campos do Jordão", "cidade": "Campos do Jordão", "uf": "SP" },
+  "dataPartida": "2026-06-06",
+  "dataRetorno": "2026-06-08",
+  "dias": 3,
+  "precoAPartir": 980,
+  "vagasRestantes": 0,
+  "situacao": "ESGOTADA",
+  "destaque": false,
+  "capa": {
+    "src": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80",
+    "largura": 1600,
+    "altura": 1067,
+    "legenda": "Montanha e névoa"
+  },
+  "descricao": "Fim de semana completo em Campos do Jordão: Boulevard, chocolates e mirantes. Turma fechada — lista de espera pelo WhatsApp.",
+  "roteiro": [
+    { "dia": 1, "titulo": "Subida à montanha", "descricao": "Saída pela manhã e check-in. Tarde no Boulevard." },
+    { "dia": 2, "titulo": "Mirantes e gastronomia", "descricao": "Passeio pelos mirantes e tempo livre para almoço." },
+    { "dia": 3, "titulo": "Retorno", "descricao": "Café e descida a São Paulo." }
+  ],
+  "inclui": ["Transporte", "2 diárias com café", "Guia acompanhante"],
+  "naoInclui": ["Refeições", "Passeios extras"],
+  "embarque": { "local": "Metrô Tatuapé — Saída B", "horario": "07:00" },
+  "fotos": [
+    {
+      "src": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80",
+      "largura": 1600,
+      "altura": 1067,
+      "legenda": null
+    }
+  ],
+  "whatsappLink": "https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20entrar%20na%20lista%20de%20espera%20de%20Campos%20do%20Jord%C3%A3o."
+}
