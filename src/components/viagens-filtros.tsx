@@ -4,10 +4,11 @@ import { useMemo, useState } from 'react'
 import { TripCard } from '@/components/trip-card'
 import type { Situacao, ViagemResumo } from '@/lib/types'
 
-type Filtro = 'TODAS' | 'ABERTA' | 'ESGOTADA'
+type Filtro = 'TODAS' | 'ABERTA' | 'CONFIRMADA' | 'ESGOTADA'
 
 const OPCOES: { valor: Filtro; rotulo: string }[] = [
   { valor: 'TODAS', rotulo: 'Todas' },
+  { valor: 'CONFIRMADA', rotulo: 'Confirmadas' },
   { valor: 'ABERTA', rotulo: 'Vagas abertas' },
   { valor: 'ESGOTADA', rotulo: 'Esgotadas' },
 ]

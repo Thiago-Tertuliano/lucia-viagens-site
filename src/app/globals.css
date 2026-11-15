@@ -231,6 +231,11 @@ img {
   background: #0e7368;
 }
 
+/* Viagens realizadas: esconde o FAB flutuante de WhatsApp */
+body[data-hide-wa-fab='1'] .wa-fab {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .wa-fab span {
     display: none;

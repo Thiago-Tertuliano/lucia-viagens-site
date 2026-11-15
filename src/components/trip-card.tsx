@@ -43,12 +43,17 @@ export function TripCard({ viagem }: { viagem: ViagemResumo }) {
             <p className="text-xs text-muted">Período</p>
             <p className="text-sm font-medium">{formatPeriodo(viagem.dataPartida, viagem.dataRetorno)}</p>
           </div>
-          <div className="text-right">
-            <p className="text-xs text-muted">A partir de</p>
-            <p className="font-display text-lg text-navy">{formatPreco(viagem.precoAPartir)}</p>
-          </div>
+          {viagem.precoAPartir != null &&
+            viagem.situacao !== 'CONFIRMADA' &&
+            viagem.situacao !== 'REALIZADA' && (
+              <div className="text-right">
+                <p className="text-xs text-muted">A partir de</p>
+                <p className="font-display text-lg text-navy">{formatPreco(viagem.precoAPartir)}</p>
+              </div>
+            )}
         </div>
-        {viagem.vagasRestantes != null && viagem.situacao === 'ABERTA' && (
+        {viagem.vagasRestantes != null &&
+          (viagem.situacao === 'ABERTA' || viagem.situacao === 'CONFIRMADA') && (
           <p className="text-xs text-muted">
             {viagem.vagasRestantes === 1
               ? '1 vaga restante'

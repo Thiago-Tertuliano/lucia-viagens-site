@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { HideWaFab } from '@/components/hide-wa-fab'
 import { StatusBadge } from '@/components/status-badge'
 import { getAllViagemSlugs, getViagem } from '@/lib/content'
 import { destinoLabel, formatDate, formatPeriodo, formatPreco } from '@/lib/format'
@@ -38,8 +39,28 @@ export default async function ViagemPage({
     .map((p) => p.trim())
     .filter(Boolean)
 
+  const realizada = viagem.situacao === 'REALIZADA'
+  const confirmada = viagem.situacao === 'CONFIRMADA'
+  const ocultarPreco =
+    realizada || confirmada || viagem.precoAPartir == null
+  // REALIZADA: só o que está em fotos[] (espelho da galeria do LC Manager)
+  const fotosGaleria = realizada
+    ? viagem.fotos
+    : viagem.fotos.length > 0
+      ? viagem.fotos
+      : viagem.capa
+        ? [viagem.capa]
+        : []
+
   return (
     <article>
+      {realizada && (
+        <>
+          <HideWaFab />
+          {/* Esconde o FAB já no HTML (sem flash) até o client setar body[data-hide-wa-fab] */}
+          <style>{`body .wa-fab{display:none!important}`}</style>
+        </>
+      )}
       <header className="relative min-h-[70svh] overflow-hidden bg-ink text-white">
         {viagem.capa && (
           // eslint-disable-next-line @next/next/no-img-element
@@ -77,6 +98,43 @@ export default async function ViagemPage({
                   {p}
                 </p>
               ))}
+            </section>
+          )}
+
+          {/* Viagem realizada: galeria em destaque para próximos passageiros */}
+          {realizada && fotosGaleria.length > 0 && (
+            <section className="space-y-6">
+              <div>
+                <h2 className="font-display text-2xl">Galeria da viagem</h2>
+                <p className="mt-2 text-sm text-ink-soft">
+                  Fotos desta saída — referência visual para quem pretende viajar conosco.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {fotosGaleria.map((foto, i) => (
+                  <figure
+                    key={`${foto.src}-${i}`}
+                    className={`media-zoom overflow-hidden bg-bg-deep ${
+                      i === 0 && fotosGaleria.length > 1 ? 'sm:col-span-2' : ''
+                    }`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={foto.src}
+                      alt={foto.legenda || viagem.titulo}
+                      className={`w-full object-cover ${
+                        i === 0 && fotosGaleria.length > 1 ? 'aspect-[16/9]' : 'aspect-[4/3]'
+                      }`}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                    />
+                    {foto.legenda && (
+                      <figcaption className="border-t border-line px-3 py-2 text-xs text-muted">
+                        {foto.legenda}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
             </section>
           )}
 
@@ -158,7 +216,7 @@ export default async function ViagemPage({
             </section>
           )}
 
-          {viagem.fotos.length > 0 && (
+          {!realizada && viagem.fotos.length > 0 && (
             <section className="space-y-6">
               <h2 className="font-display text-2xl">Galeria</h2>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -195,45 +253,69 @@ export default async function ViagemPage({
               </p>
             </div>
 
-            <div className="border-t border-line pt-5">
-              <p className="text-xs uppercase tracking-[0.14em] text-muted">A partir de</p>
-              <p className="mt-1 font-display text-3xl text-navy">
-                {formatPreco(viagem.precoAPartir)}
-              </p>
-            </div>
-
-            {viagem.vagasRestantes != null && (
+            {realizada ? (
               <div className="border-t border-line pt-5">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted">Vagas</p>
-                <p className="mt-1 text-sm font-medium">
-                  {viagem.situacao === 'ESGOTADA'
-                    ? 'Turma esgotada — lista de espera'
-                    : viagem.vagasRestantes === 1
-                      ? '1 vaga restante'
-                      : `${viagem.vagasRestantes} vagas restantes`}
+                <p className="text-xs uppercase tracking-[0.14em] text-muted">Status</p>
+                <p className="mt-1 font-display text-xl text-navy">Viagem realizada</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Confira a galeria ao lado — memórias desta saída para inspirar a próxima.
                 </p>
               </div>
-            )}
-
-            {viagem.embarque && (
-              <div className="border-t border-line pt-5">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted">Embarque</p>
-                <p className="mt-1 text-sm font-medium">{viagem.embarque.local}</p>
-                {viagem.embarque.horario && (
-                  <p className="text-sm text-ink-soft">{viagem.embarque.horario}</p>
+            ) : (
+              <>
+                {confirmada && (
+                  <div className="border-t border-line pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Status</p>
+                    <p className="mt-1 font-display text-xl text-navy">Viagem confirmada</p>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      Saída confirmada — fale conosco pelo WhatsApp para reservar sua vaga.
+                    </p>
+                  </div>
                 )}
-              </div>
-            )}
 
-            {viagem.whatsappLink && (
-              <a
-                href={viagem.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-accent w-full"
-              >
-                {viagem.situacao === 'ESGOTADA' ? 'Entrar na lista de espera' : 'Falar no WhatsApp'}
-              </a>
+                {!ocultarPreco && (
+                  <div className="border-t border-line pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-muted">A partir de</p>
+                    <p className="mt-1 font-display text-3xl text-navy">
+                      {formatPreco(viagem.precoAPartir)}
+                    </p>
+                  </div>
+                )}
+
+                {viagem.vagasRestantes != null && (
+                  <div className="border-t border-line pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Vagas</p>
+                    <p className="mt-1 text-sm font-medium">
+                      {viagem.situacao === 'ESGOTADA'
+                        ? 'Turma esgotada — lista de espera'
+                        : viagem.vagasRestantes === 1
+                          ? '1 vaga restante'
+                          : `${viagem.vagasRestantes} vagas restantes`}
+                    </p>
+                  </div>
+                )}
+
+                {viagem.embarque && (
+                  <div className="border-t border-line pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Embarque</p>
+                    <p className="mt-1 text-sm font-medium">{viagem.embarque.local}</p>
+                    {viagem.embarque.horario && (
+                      <p className="text-sm text-ink-soft">{viagem.embarque.horario}</p>
+                    )}
+                  </div>
+                )}
+
+                {viagem.whatsappLink && (
+                  <a
+                    href={viagem.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-accent w-full"
+                  >
+                    {viagem.situacao === 'ESGOTADA' ? 'Entrar na lista de espera' : 'Falar no WhatsApp'}
+                  </a>
+                )}
+              </>
             )}
 
             <Link href="/viagens" className="block text-center text-sm text-accent hover:underline">

@@ -6,7 +6,9 @@
     "dev": "next dev -p 3010",
     "build": "next build",
     "start": "npx serve out -p 3010",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:lc": "node scripts/sync-from-lc-manager.mjs",
+    "sync:lc:watch": "node scripts/sync-from-lc-manager.mjs --watch"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

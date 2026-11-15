@@ -50,7 +50,12 @@ export async function getAllViagemSlugs(): Promise<string[]> {
 
 export function viagensAtivas(viagens: ViagemResumo[]) {
   return viagens
-    .filter((v) => v.situacao === 'ABERTA' || v.situacao === 'ESGOTADA')
+    .filter(
+      (v) =>
+        v.situacao === 'ABERTA' ||
+        v.situacao === 'CONFIRMADA' ||
+        v.situacao === 'ESGOTADA',
+    )
     .sort((a, b) => a.dataPartida.localeCompare(b.dataPartida))
 }
 

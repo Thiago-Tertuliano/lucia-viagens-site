@@ -27,7 +27,28 @@ npm install
 npm run dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000).
+Abra [http://localhost:3010](http://localhost:3010).
+
+### Sincronizar viagens do LC Manager (local)
+
+Com o app **Lu & Cia / LC Manager** aberto:
+
+```bash
+npm run sync:lc
+```
+
+Isso lê `http://127.0.0.1:3000/api/web` e atualiza `content/` com:
+- viagens **CONCLUIDA** → `situacao: REALIZADA` (aparecem na Galeria)
+- viagens **CONFIRMADA** → `situacao: CONFIRMADA` (aparecem na agenda, **sem preço**)
+- fotos da **Galeria** operacional do LC Manager → espelho em `public/web/sync/<slug>/` (só a galeria; add/remove no Manager atualiza o site)
+- viagens com página **Web publicada** → entram como ABERTA/ESGOTADA
+- a lista do site é **substituída** pelo sync (demos/mocks são removidos)
+
+Para importar tudo (inclui rascunhos mapeados como abertas):
+
+```bash
+SYNC_ALL=1 npm run sync:lc
+```
 
 ## Build
 

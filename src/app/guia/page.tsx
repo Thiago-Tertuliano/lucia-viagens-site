@@ -28,12 +28,6 @@ const PASSOS = [
   },
 ]
 
-const DICAS = [
-  'Status “Vagas abertas” e “Esgotada” são atualizados pelo sistema de gestão da Lu&Cia.',
-  'Preço “a partir de” ou “Consulte” depende do que foi liberado para o site — o valor final é confirmado no atendimento.',
-  'Pontos turísticos e roteiros evoluem com o cadastro no sistema interno; o site só exibe o que foi publicado.',
-]
-
 export default async function GuiaPage() {
   const site = await getSite()
 
@@ -57,18 +51,6 @@ export default async function GuiaPage() {
             </li>
           ))}
         </ol>
-
-        <section className="mt-14 rounded-xl border border-line bg-surface/80 p-6 md:p-8">
-          <h2 className="font-display text-xl text-[#1c3a59]">Boas práticas</h2>
-          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink-soft">
-            {DICAS.map((d) => (
-              <li key={d} className="flex gap-3">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#d48995]" />
-                <span>{d}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
 
         <div className="mt-10 flex flex-wrap gap-3">
           <Link href="/viagens" className="btn btn-primary">

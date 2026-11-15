@@ -1,4 +1,4 @@
-export type Situacao = 'ABERTA' | 'ESGOTADA' | 'REALIZADA'
+export type Situacao = 'ABERTA' | 'CONFIRMADA' | 'ESGOTADA' | 'REALIZADA'
 
 export interface Foto {
   src: string

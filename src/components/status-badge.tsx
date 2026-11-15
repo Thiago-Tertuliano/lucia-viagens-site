@@ -2,6 +2,7 @@ import type { Situacao } from '@/lib/types'
 
 const MAP: Record<Situacao, { label: string; color: string }> = {
   ABERTA: { label: 'Vagas abertas', color: 'var(--ok)' },
+  CONFIRMADA: { label: 'Confirmada', color: 'var(--accent)' },
   ESGOTADA: { label: 'Esgotada', color: 'var(--warn)' },
   REALIZADA: { label: 'Realizada', color: 'var(--muted)' },
 }
