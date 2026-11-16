@@ -5,7 +5,9 @@ import { GaleriaFotos } from '@/components/galeria-fotos'
 import { HideWaFab } from '@/components/hide-wa-fab'
 import { StatusBadge } from '@/components/status-badge'
 import { WhatsappButton } from '@/components/whatsapp-button'
-import { getAllViagemSlugs, getViagem } from '@/lib/content'
+import { BarraReserva } from '@/components/barra-reserva'
+import { getAllViagemSlugs, getSite, getViagem } from '@/lib/content'
+import { linkWhatsappViagem } from '@/lib/whatsapp'
 import {
   chamadaPersonalizada,
   destinoLabel,
@@ -69,6 +71,9 @@ export default async function ViagemPage({
     .map((p) => p.trim())
     .filter(Boolean)
 
+  const site = await getSite()
+  const linkReserva = linkWhatsappViagem(viagem, site)
+
   const realizada = viagem.situacao === 'REALIZADA'
   const confirmada = viagem.situacao === 'CONFIRMADA'
   const ocultarPreco = realizada || confirmada || viagem.precoAPartir == null
@@ -94,6 +99,17 @@ export default async function ViagemPage({
           {/* Esconde o FAB já no HTML (sem flash) até o client setar body[data-hide-wa-fab] */}
           <style>{`body .wa-fab{display:none!important}`}</style>
         </>
+      )}
+
+      {!realizada && linkReserva && (
+        <BarraReserva
+          href={linkReserva}
+          dataPartida={viagem.dataPartida}
+          dataRetorno={viagem.dataRetorno}
+          situacao={viagem.situacao}
+          vagasRestantes={viagem.vagasRestantes}
+          textoBotao={viagem.textoBotao}
+        />
       )}
 
       <header className="relative min-h-[60svh] overflow-hidden bg-navy-deep text-white">
@@ -220,11 +236,11 @@ export default async function ViagemPage({
                   </div>
                 )}
               </div>
-              {!realizada && viagem.whatsappLink && (
+              {!realizada && linkReserva && (
                 <p className="text-sm text-ink-soft">
                   Ficou com dúvida sobre algum item?{' '}
                   <a
-                    href={viagem.whatsappLink}
+                    href={linkReserva}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-semibold text-rose-deep underline underline-offset-2"
@@ -354,8 +370,8 @@ export default async function ViagemPage({
                 </>
               ) : (
                 <>
-                  {viagem.whatsappLink && (
-                    <WhatsappButton href={viagem.whatsappLink} size="lg" full>
+                  {linkReserva && (
+                    <WhatsappButton href={linkReserva} size="lg" full>
                       {viagem.situacao === 'ESGOTADA' ? 'Entrar na lista de espera' : 'Reservar pelo WhatsApp'}
                     </WhatsappButton>
                   )}

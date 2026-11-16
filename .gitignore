@@ -45,3 +45,4 @@ next-env.d.ts
 /.publicador-estado.json
 /scripts/publicador.log
 /scripts/publicador-oculto.vbs
+/.dev-3010.log

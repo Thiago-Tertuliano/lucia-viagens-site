@@ -12,6 +12,7 @@
       "Compras e despesas pessoais"
     ]
   },
+  "viagens": {},
   "destinos": [
     {
       "match": ["festa-da-uva", "jundiai"],

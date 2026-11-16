@@ -269,6 +269,8 @@ async function buildFromSystem(v) {
   aplicarEditorial(full, await carregarEditorial(), { paradas })
   resumo.descricaoCurta = full.descricaoCurta
   resumo.destaques = full.destaques
+  if (full.mensagemWhatsapp) resumo.mensagemWhatsapp = full.mensagemWhatsapp
+  if (full.textoBotao) resumo.textoBotao = full.textoBotao
 
   return { resumo, full, fotosCount: fotos.length }
 }

@@ -50,6 +50,23 @@ Para importar tudo (inclui rascunhos mapeados como abertas):
 SYNC_ALL=1 npm run sync:lc
 ```
 
+### Barra de reserva e WhatsApp por viagem
+
+Nas viagens futuras, o celular mostra uma barra fixa com data, vagas e botão "Reservar" (em viagem esgotada, "Lista de espera"). Para mudar a mensagem ou o texto do botão de uma viagem, edite `scripts/conteudo-editorial.json` e rode `npm run sync:lc`:
+
+```json
+"viagens": {
+  "jundiai-2027-01-31": {
+    "mensagemWhatsapp": "Olá! Quero reservar a {titulo} ({data}).",
+    "textoBotao": "Quero ir"
+  }
+}
+```
+
+- `mensagemWhatsapp`: texto livre; `{titulo}` e `{data}` são trocados pelos dados da viagem. Sem ela, vale a mensagem padrão.
+- `textoBotao`: opcional (padrão "Reservar").
+- A chave é o slug da viagem (nome do arquivo em `content/viagens/`). Os mesmos campos também podem ficar dentro de um item de `destinos`, valendo para todas as viagens daquele destino; a configuração por slug tem prioridade.
+
 ### Publicação automática (LC Manager → site em até ~5 min)
 
 `scripts/publicar-automatico.mjs` roda a cada 2 minutos pelo Agendador de Tarefas do Windows:

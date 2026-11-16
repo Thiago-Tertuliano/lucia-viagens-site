@@ -55,6 +55,13 @@ export interface ViagemResumo {
   descricaoCurta?: string | null
   /** Nomes das principais atrações, para cards. */
   destaques?: string[]
+  /**
+   * Mensagem do WhatsApp desta viagem (texto livre; aceita {titulo} e {data}).
+   * Vem de scripts/conteudo-editorial.json. Sem ela, usa `whatsappLink`.
+   */
+  mensagemWhatsapp?: string
+  /** Texto do botão da barra de reserva no celular (padrão: "Reservar"). */
+  textoBotao?: string
 }
 
 export interface Viagem extends ViagemResumo {

@@ -79,6 +79,16 @@ export function aplicarEditorial(full, editorial, { paradas } = {}) {
     if (!full.naoInclui?.length) full.naoInclui = entrada?.naoInclui ?? editorial.padrao.naoInclui
   }
 
+  // WhatsApp da viagem: por slug (editorial.viagens) > por destino. Só viagens futuras.
+  if (futura) {
+    const porSlug = editorial.viagens?.[full.slug]
+    for (const campo of ['mensagemWhatsapp', 'textoBotao']) {
+      const valor = porSlug?.[campo] ?? entrada?.[campo]
+      if (typeof valor === 'string' && valor.trim()) full[campo] = valor.trim()
+      else delete full[campo]
+    }
+  }
+
   full.descricaoCurta = descricaoCurta(full.descricao)
   full.destaques = (full.pontosTuristicos || []).slice(0, 3).map((p) => p.nome)
   return full
