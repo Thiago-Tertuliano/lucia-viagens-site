@@ -45,7 +45,9 @@ async function log(msg) {
 }
 
 async function git(...args) {
-  const { stdout } = await run('git', args, { cwd: root, maxBuffer: 64 * 1024 * 1024 })
+  // Identidade só para estes comandos (não altera a configuração do Git do computador)
+  const identidade = ['-c', 'user.name=Lu&Cia Viagens Site', '-c', 'user.email=site@luciaviagens.com.br']
+  const { stdout } = await run('git', [...identidade, ...args], { cwd: root, maxBuffer: 64 * 1024 * 1024 })
   return stdout.trim()
 }
 
