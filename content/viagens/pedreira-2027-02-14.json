@@ -20,12 +20,36 @@
     "altura": 1067,
     "legenda": null
   },
-  "descricao": null,
+  "descricao": "A capital da porcelana é um polo imenso de lojas com utilidades domésticas, MDF e peças de decoração cruas, ideal para buscar garimpos para projetos de interiores e mobiliário.",
   "roteiro": [],
-  "pontosTuristicos": [],
-  "inclui": [],
-  "naoInclui": [],
+  "pontosTuristicos": [
+    {
+      "nome": "Lojas de porcelana e utilidades domésticas",
+      "descricao": "A capital da porcelana reúne um polo grande de lojas para garimpar peças para casa.",
+      "ordem": 1
+    },
+    {
+      "nome": "MDF e peças cruas para decoração",
+      "descricao": "Ideal para quem busca materiais para projetos de interiores e mobiliário.",
+      "ordem": 2
+    }
+  ],
+  "inclui": [
+    "Transporte em ônibus de turismo, ida e volta",
+    "Acompanhamento da equipe Lu&Cia durante toda a saída",
+    "Roteiro organizado, com horários combinados antes do embarque"
+  ],
+  "naoInclui": [
+    "Alimentação e bebidas",
+    "Ingressos e passeios opcionais",
+    "Compras e despesas pessoais"
+  ],
   "embarque": null,
   "fotos": [],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Pedreira%20-%20S%C3%A3o%20Paulo%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Pedreira%20-%20S%C3%A3o%20Paulo%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "A capital da porcelana é um polo imenso de lojas com utilidades domésticas, MDF e peças de decoração cruas, ideal para buscar garimpos para projetos de interiores e…",
+  "destaques": [
+    "Lojas de porcelana e utilidades domésticas",
+    "MDF e peças cruas para decoração"
+  ]
 }

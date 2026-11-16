@@ -16,9 +16,8 @@ export default async function ViagensPage() {
     <div className="section-pad">
       <div className="container-page">
         <SectionHeading
-          eyebrow="Agenda"
           title="Próximas viagens"
-          description="Filtre por status ou busque pelo destino. Interesse e reserva com a equipe pelo WhatsApp."
+          description="Cada viagem mostra o que você vai conhecer e o que está incluso. Gostou de uma? A reserva é com a equipe, pelo WhatsApp."
         />
 
         {proximas.length === 0 ? (

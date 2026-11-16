@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { BrandLogo } from '@/components/brand-logo'
+import { WhatsappIcon } from '@/components/whatsapp-button'
 import type { Site } from '@/lib/types'
 
 export function SiteFooter({ site }: { site: Site }) {
@@ -13,12 +14,12 @@ export function SiteFooter({ site }: { site: Site }) {
           </div>
           {site.slogan && <p className="max-w-sm text-sm leading-relaxed text-[#fdf2e7]/70">{site.slogan}</p>}
           <p className="max-w-sm text-xs leading-relaxed text-[#fdf2e7]/45">
-            Site informativo — intereste e reserva pelo WhatsApp.
+            Site informativo — interesse e reserva pelo WhatsApp.
           </p>
         </div>
 
         <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d4a456]">Explorar</p>
+          <p className="text-sm font-semibold text-[#d4a456]">Explorar</p>
           <div className="flex flex-col gap-2 text-sm">
             <Link href="/viagens" className="hover:text-[#d48995]">Viagens</Link>
             <Link href="/galeria" className="hover:text-[#d48995]">Galeria</Link>
@@ -28,10 +29,16 @@ export function SiteFooter({ site }: { site: Site }) {
         </div>
 
         <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#d4a456]">Contato</p>
+          <p className="text-sm font-semibold text-[#d4a456]">Contato</p>
           <div className="flex flex-col gap-2 text-sm text-[#fdf2e7]/80">
             {site.contato.whatsappLink && (
-              <a href={site.contato.whatsappLink} target="_blank" rel="noopener noreferrer" className="hover:text-[#d48995]">
+              <a
+                href={site.contato.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-semibold text-[#fdf2e7] hover:text-[#d4a456]"
+              >
+                <WhatsappIcon className="size-4" />
                 WhatsApp
               </a>
             )}

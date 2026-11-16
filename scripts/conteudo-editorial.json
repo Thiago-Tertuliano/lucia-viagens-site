@@ -1,0 +1,104 @@
+{
+  "_aviso": "Conteudo editorial do site, mantido aqui enquanto o LC Manager nao tem campos de atracoes e itens incluidos. Os textos de atracoes vem das descricoes cadastradas no LC Manager. REVISE 'padrao' antes de publicar: sao premissas de excursao, nao dados do sistema.",
+  "padrao": {
+    "inclui": [
+      "Transporte em ônibus de turismo, ida e volta",
+      "Acompanhamento da equipe Lu&Cia durante toda a saída",
+      "Roteiro organizado, com horários combinados antes do embarque"
+    ],
+    "naoInclui": [
+      "Alimentação e bebidas",
+      "Ingressos e passeios opcionais",
+      "Compras e despesas pessoais"
+    ]
+  },
+  "destinos": [
+    {
+      "match": ["festa-da-uva", "jundiai"],
+      "atracoes": [
+        { "nome": "Estandes de gastronomia e vinhos", "descricao": "Pratos típicos, vinhos artesanais e produtos da região para provar no seu ritmo." },
+        { "nome": "Pisa da uva", "descricao": "A cerimônia tradicional da festa, com a chance de pisar na uva." },
+        { "nome": "Atrações culturais", "descricao": "Música, dança e apresentações ao longo do dia, além de exposição e venda de uvas e frutas." }
+      ],
+      "inclui": [
+        "Transporte em ônibus de turismo, sem trânsito, pedágio ou estacionamento para você se preocupar",
+        "Acompanhamento da equipe Lu&Cia durante toda a saída",
+        "Tempo livre para passear pelos estandes no seu ritmo"
+      ]
+    },
+    {
+      "match": ["pedreira"],
+      "atracoes": [
+        { "nome": "Lojas de porcelana e utilidades domésticas", "descricao": "A capital da porcelana reúne um polo grande de lojas para garimpar peças para casa." },
+        { "nome": "MDF e peças cruas para decoração", "descricao": "Ideal para quem busca materiais para projetos de interiores e mobiliário." }
+      ]
+    },
+    {
+      "match": ["campos-do-jordao", "campos-de-jordao"],
+      "atracoes": [
+        { "nome": "Vila Capivari", "descricao": "Centrinho turístico para pedestres, com lojas de malhas, galerias e restaurantes." },
+        { "nome": "Morro do Elefante", "descricao": "Vista panorâmica da serra a bordo do clássico teleférico." },
+        { "nome": "Parque Amantikir e Ducha de Prata", "descricao": "Jardins floridos e natureza para um passeio ao ar livre." },
+        { "nome": "Fondue, chocolates e cervejaria", "descricao": "Sequências de fondue, chocolates artesanais e a cervejaria Baden Baden." }
+      ]
+    },
+    {
+      "match": ["pocos-de-caldas"],
+      "atracoes": [
+        { "nome": "Banhos em águas termais", "descricao": "Experiência de relaxamento com as águas da cidade." },
+        { "nome": "Passeio de teleférico", "descricao": "Vista da cidade e da serra do alto." },
+        { "nome": "Gastronomia mineira", "descricao": "Comida mineira típica, uma das marcas do roteiro." },
+        { "nome": "Cristais murano e praças históricas", "descricao": "Fábricas de cristais e praças de forte apelo arquitetônico." }
+      ]
+    },
+    {
+      "match": ["aguas-de-sao-pedro"],
+      "atracoes": [
+        { "nome": "Banhos de águas termais sulfurosas", "descricao": "Programa de saúde e descanso, o motivo de a cidade ser tão procurada." },
+        { "nome": "Centrinho arborizado", "descricao": "Caminhadas curtas em uma das menores cidades do Brasil." }
+      ]
+    },
+    {
+      "match": ["aguas-de-lindoia"],
+      "atracoes": [
+        { "nome": "Banhos terapêuticos", "descricao": "Foco total em relaxamento, no clássico do turismo termal." },
+        { "nome": "Praças arborizadas", "descricao": "Espaços amplos para caminhar e descansar." }
+      ]
+    },
+    {
+      "match": ["paranapiacaba"],
+      "atracoes": [
+        { "nome": "Vila inglesa histórica", "descricao": "Arquitetura rústica em madeira e ferro da época das ferrovias." },
+        { "nome": "Caminhadas e trilhas na neblina", "descricao": "Passeios a pé pela vila e pela serra." }
+      ]
+    },
+    {
+      "match": ["santo-antonio-do-pinhal"],
+      "atracoes": [
+        { "nome": "Cervejarias artesanais", "descricao": "Degustação em cervejarias locais, com menos movimento que as cidades vizinhas." },
+        { "nome": "Serra da Mantiqueira", "descricao": "Um refúgio tranquilo na montanha." }
+      ]
+    },
+    {
+      "match": ["holambra"],
+      "atracoes": [
+        { "nome": "Campos de flores", "descricao": "Áreas de cultivo abertas para visitação." },
+        { "nome": "Colonização holandesa", "descricao": "Charme e culinária típica da cidade das flores." }
+      ]
+    },
+    {
+      "match": ["sao-roque"],
+      "atracoes": [
+        { "nome": "Rota do Vinho", "descricao": "Mais de 30 estabelecimentos para degustar vinhos entre os vinhedos." },
+        { "nome": "Gastronomia", "descricao": "Um dia inteiro de degustações e boa mesa." }
+      ]
+    },
+    {
+      "match": ["embu-das-artes"],
+      "atracoes": [
+        { "nome": "Feiras de artesanato", "descricao": "Centro histórico com feiras e lojas de artesanato." },
+        { "nome": "Móveis em madeira maciça e demolição", "descricao": "Inspiração e peças de decoração rústica." }
+      ]
+    }
+  ]
+}

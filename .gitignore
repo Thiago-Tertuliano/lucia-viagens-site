@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# publicador automatico
+/.publicador.lock
+/.publicador-estado.json
+/scripts/publicador.log
+/scripts/publicador-oculto.vbs

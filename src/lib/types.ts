@@ -34,6 +34,8 @@ export interface PontoTuristico {
   descricao: string | null
   /** Ordem de visita sugerida (1-based). */
   ordem?: number
+  /** Horário previsto (ex.: "10:00"), quando vem do roteiro operacional. */
+  horario?: string | null
 }
 
 export interface ViagemResumo {
@@ -49,6 +51,10 @@ export interface ViagemResumo {
   situacao: Situacao
   destaque: boolean
   capa: Foto | null
+  /** Primeiras frases da descrição, para cards. */
+  descricaoCurta?: string | null
+  /** Nomes das principais atrações, para cards. */
+  destaques?: string[]
 }
 
 export interface Viagem extends ViagemResumo {

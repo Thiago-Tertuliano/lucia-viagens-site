@@ -22,7 +22,7 @@ export function ViagensFiltros({ viagens }: { viagens: ViagemResumo[] }) {
     return viagens.filter((v) => {
       if (filtro !== 'TODAS' && v.situacao !== (filtro as Situacao)) return false
       if (!q) return true
-      const blob = `${v.titulo} ${v.destino.nome} ${v.destino.cidade ?? ''} ${v.destino.uf ?? ''} ${v.chamada ?? ''}`.toLowerCase()
+      const blob = `${v.titulo} ${v.destino.nome} ${v.destino.cidade ?? ''} ${v.destino.uf ?? ''} ${v.chamada ?? ''} ${v.descricaoCurta ?? ''} ${(v.destaques ?? []).join(' ')}`.toLowerCase()
       return blob.includes(q)
     })
   }, [viagens, filtro, busca])
@@ -35,8 +35,9 @@ export function ViagensFiltros({ viagens }: { viagens: ViagemResumo[] }) {
             <button
               key={o.valor}
               type="button"
+              aria-pressed={filtro === o.valor}
               onClick={() => setFiltro(o.valor)}
-              className={`h-10 rounded-md px-4 text-sm font-semibold transition ${
+              className={`h-10 rounded-md px-4 text-sm font-semibold transition-colors duration-150 ${
                 filtro === o.valor
                   ? 'bg-[#1c3a59] text-[#fdf2e7]'
                   : 'border border-[#1c3a59]/15 text-[#1c3a59] hover:bg-[#1c3a59]/5'
@@ -52,7 +53,7 @@ export function ViagensFiltros({ viagens }: { viagens: ViagemResumo[] }) {
             type="search"
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
-            placeholder="Buscar destino ou título…"
+            placeholder="Buscar por destino ou atração"
             className="h-10 w-full rounded-md border border-[#1c3a59]/15 bg-white/70 px-3 text-sm text-[#1c3a59] outline-none ring-[#d48995] placeholder:text-[#1c3a59]/40 focus:ring-2"
           />
         </label>
@@ -63,7 +64,7 @@ export function ViagensFiltros({ viagens }: { viagens: ViagemResumo[] }) {
           Nenhuma viagem encontrada com esses filtros.
         </p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {lista.map((v) => (
             <TripCard key={v.slug} viagem={v} />
           ))}

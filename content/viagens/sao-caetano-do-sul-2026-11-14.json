@@ -14,13 +14,67 @@
   "vagasRestantes": null,
   "situacao": "REALIZADA",
   "destaque": false,
-  "capa": null,
-  "descricao": "Viagem realizada pela Lu&Cia para Campos de Jordão.",
+  "capa": {
+    "src": "/web/sync/sao-caetano-do-sul-2026-11-14-capa.jpg",
+    "largura": 1600,
+    "altura": 1067,
+    "legenda": null
+  },
+  "descricao": "Campos do Jordão, carinhosamente conhecida como a \"Suíça Brasileira\", é o destino de inverno mais famoso de São Paulo. Localizada no alto da Serra da Mantiqueira, a cidade encanta com seu clima de montanha e a charmosa arquitetura de estilo europeu. O coração do agito é a Vila Capivari, um centrinho turístico exclusivo para pedestres, repleto de lojas de malhas, galerias e restaurantes acolhedores. Durante o dia, os visitantes podem explorar os belos jardins floridos do Parque Amantikir, a natureza da Ducha de Prata e do Horto Florestal, ou apreciar a vista panorâmica do Morro do Elefante através do clássico teleférico. Para completar a experiência, a gastronomia local é um convite irrecusável para saborear as tradicionais sequências de fondue, os deliciosos chocolates artesanais e a icônica cervejaria Baden Baden.",
   "roteiro": [],
-  "pontosTuristicos": [],
+  "pontosTuristicos": [
+    {
+      "nome": "Portal de Campos do Jordão",
+      "descricao": null,
+      "ordem": 1,
+      "horario": "10:00"
+    },
+    {
+      "nome": "Sans Souci Café e Confeitaria",
+      "descricao": null,
+      "ordem": 2,
+      "horario": "11:00"
+    },
+    {
+      "nome": "Spinassi Chocolate",
+      "descricao": null,
+      "ordem": 3,
+      "horario": "12:00"
+    },
+    {
+      "nome": "Cacau Show - Chocolates",
+      "descricao": null,
+      "ordem": 4,
+      "horario": "12:30"
+    },
+    {
+      "nome": "Parque do Capivari",
+      "descricao": null,
+      "ordem": 5,
+      "horario": "13:00"
+    },
+    {
+      "nome": "Monte do Elefante",
+      "descricao": null,
+      "ordem": 6,
+      "horario": "14:30"
+    },
+    {
+      "nome": "Bosque do Silêncio",
+      "descricao": null,
+      "ordem": 7,
+      "horario": "15:00"
+    }
+  ],
   "inclui": [],
   "naoInclui": [],
   "embarque": null,
   "fotos": [],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Campos%20de%20Jord%C3%A3o%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Campos%20de%20Jord%C3%A3o%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "Campos do Jordão, carinhosamente conhecida como a \"Suíça Brasileira\", é o destino de inverno mais famoso de São Paulo.",
+  "destaques": [
+    "Portal de Campos do Jordão",
+    "Sans Souci Café e Confeitaria",
+    "Spinassi Chocolate"
+  ]
 }

@@ -20,7 +20,7 @@
     "altura": 1067,
     "legenda": null
   },
-  "descricao": "Viagem realizada pela Lu&Cia para Basílica de Nossa Senhora do Rosário - Arautos do Evangelho.",
+  "descricao": "A Basílica Nossa Senhora do Rosário é um templo católico localizado no município brasileiro de Caieiras, estado de São Paulo, na jurisdição da diocese de Bragança Paulista.",
   "roteiro": [],
   "pontosTuristicos": [],
   "inclui": [],
@@ -94,5 +94,7 @@
       "legenda": null
     }
   ],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Bas%C3%ADlica%20de%20Nossa%20Senhora%20do%20Ros%C3%A1rio%20-%20Arautos%20do%20Evangelho%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Bas%C3%ADlica%20de%20Nossa%20Senhora%20do%20Ros%C3%A1rio%20-%20Arautos%20do%20Evangelho%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "A Basílica Nossa Senhora do Rosário é um templo católico localizado no município brasileiro de Caieiras, estado de São Paulo, na jurisdição da diocese de Bragança…",
+  "destaques": []
 }

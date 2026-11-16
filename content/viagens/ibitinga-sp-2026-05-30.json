@@ -14,13 +14,20 @@
   "vagasRestantes": null,
   "situacao": "REALIZADA",
   "destaque": false,
-  "capa": null,
-  "descricao": "Viagem realizada pela Lu&Cia para Ibitinga - SP.",
+  "capa": {
+    "src": "/web/sync/ibitinga-sp-2026-05-30-capa.jpg",
+    "largura": 1600,
+    "altura": 1067,
+    "legenda": null
+  },
+  "descricao": "Ibitinga é um dos 29 municípios paulistas considerados estâncias turísticas pelo Estado de São Paulo, por cumprirem determinados pré-requisitos definidos por lei estadual. Tal status garante, a esses municípios, uma verba maior por parte do estado para a promoção do turismo regional. O município também adquire o direito de agregar, junto ao seu nome, o título de \"estância turística\", expressão pela qual passa a ser designado tanto pelo expediente municipal oficial quanto pelas referências estaduais.",
   "roteiro": [],
   "pontosTuristicos": [],
   "inclui": [],
   "naoInclui": [],
   "embarque": null,
   "fotos": [],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Ibitinga%20-%20SP%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Ibitinga%20-%20SP%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "Ibitinga é um dos 29 municípios paulistas considerados estâncias turísticas pelo Estado de São Paulo, por cumprirem determinados pré-requisitos definidos por lei…",
+  "destaques": []
 }

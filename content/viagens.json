@@ -21,7 +21,12 @@
         "largura": 1600,
         "altura": 1067,
         "legenda": null
-      }
+      },
+      "descricaoCurta": "A capital da porcelana é um polo imenso de lojas com utilidades domésticas, MDF e peças de decoração cruas, ideal para buscar garimpos para projetos de interiores e…",
+      "destaques": [
+        "Lojas de porcelana e utilidades domésticas",
+        "MDF e peças cruas para decoração"
+      ]
     },
     {
       "slug": "jundiai-2027-01-31",
@@ -44,7 +49,13 @@
         "largura": 1600,
         "altura": 1067,
         "legenda": null
-      }
+      },
+      "descricaoCurta": "Venha viver um domingo inesquecível na tradicional Festa da Uva em Jundiaí com a Lu&Cia Viagens.",
+      "destaques": [
+        "Estandes de gastronomia e vinhos",
+        "Pisa da uva",
+        "Atrações culturais"
+      ]
     },
     {
       "slug": "sao-caetano-do-sul-2026-11-14",
@@ -62,7 +73,18 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/sao-caetano-do-sul-2026-11-14-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Campos do Jordão, carinhosamente conhecida como a \"Suíça Brasileira\", é o destino de inverno mais famoso de São Paulo.",
+      "destaques": [
+        "Portal de Campos do Jordão",
+        "Sans Souci Café e Confeitaria",
+        "Spinassi Chocolate"
+      ]
     },
     {
       "slug": "itu-2026-10-31",
@@ -80,7 +102,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/itu-2026-10-31-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Viagem realizada pela Lu&Cia para Itu - São Paulo.",
+      "destaques": []
     },
     {
       "slug": "santuario-nossa-senhora-aparecida-do-norte-sp-2026-08-16",
@@ -98,7 +127,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/santuario-nossa-senhora-aparecida-do-norte-sp-2026-08-16-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Viagem realizada pela Lu&Cia para Santuario Nossa Senhora Aparecida do Norte - SP.",
+      "destaques": []
     },
     {
       "slug": "santo-antonio-do-pinhal-sp-2026-07-04",
@@ -116,7 +152,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/santo-antonio-do-pinhal-sp-2026-07-04-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Viagem realizada pela Lu&Cia para SANTO ANTONIO DO PINHAL - SP.",
+      "destaques": []
     },
     {
       "slug": "ibitinga-sp-2026-05-30",
@@ -134,7 +177,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/ibitinga-sp-2026-05-30-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Ibitinga é um dos 29 municípios paulistas considerados estâncias turísticas pelo Estado de São Paulo, por cumprirem determinados pré-requisitos definidos por lei…",
+      "destaques": []
     },
     {
       "slug": "santuario-nossa-senhora-aparecida-do-norte-sp-2026-05-16",
@@ -152,7 +202,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/santuario-nossa-senhora-aparecida-do-norte-sp-2026-05-16-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Viagem realizada pela Lu&Cia para Santuario Nossa Senhora Aparecida do Norte - SP.",
+      "destaques": []
     },
     {
       "slug": "basilica-de-nossa-senhora-do-rosario-arautos-do-evangelho-2026-04-26",
@@ -175,7 +232,9 @@
         "largura": 1600,
         "altura": 1067,
         "legenda": null
-      }
+      },
+      "descricaoCurta": "A Basílica Nossa Senhora do Rosário é um templo católico localizado no município brasileiro de Caieiras, estado de São Paulo, na jurisdição da diocese de Bragança…",
+      "destaques": []
     },
     {
       "slug": "pocos-de-caldas-mg-2025-11-29",
@@ -193,7 +252,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/pocos-de-caldas-mg-2025-11-29-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Poços de Caldas é um município brasileiro do estado de Minas Gerais, na Região Sudeste do país.",
+      "destaques": []
     },
     {
       "slug": "santuario-nossa-senhora-aparecida-do-norte-sp-2025-05-17",
@@ -211,7 +277,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/santuario-nossa-senhora-aparecida-do-norte-sp-2025-05-17-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "É o maior templo católico do Brasil e o segundo maior do mundo, menor apenas que a Basílica de São Pedro, no Vaticano.",
+      "destaques": []
     },
     {
       "slug": "campos-do-jordao-sp-2023-04-15",
@@ -229,7 +302,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/campos-do-jordao-sp-2023-04-15-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Campos do Jordão é um município na Serra da Mantiqueira, no Brasil, e faz parte do estado de São Paulo.",
+      "destaques": []
     },
     {
       "slug": "holambra-sp-2023-02-16",
@@ -247,7 +327,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/holambra-sp-2023-02-16-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Holambra é um município brasileiro do estado de São Paulo e microrregião de Campinas, fundado em 14 de julho de 1948.",
+      "destaques": []
     },
     {
       "slug": "festa-da-uva-jundiai-sp-2023-02-05",
@@ -265,7 +352,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/festa-da-uva-jundiai-sp-2023-02-05-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Maior Festa Turística de Jundiaí e uma das maiores do País. Atrações culturais, música, dança, gastronomia típica, exposição e venda de uvas e frutas diversas, parque…",
+      "destaques": []
     },
     {
       "slug": "monte-siao-mg-2023-01-19",
@@ -283,7 +377,14 @@
       "vagasRestantes": null,
       "situacao": "REALIZADA",
       "destaque": false,
-      "capa": null
+      "capa": {
+        "src": "/web/sync/monte-siao-mg-2023-01-19-capa.jpg",
+        "largura": 1600,
+        "altura": 1067,
+        "legenda": null
+      },
+      "descricaoCurta": "Monte Sião é um município brasileiro do estado de Minas Gerais, na microrregião de Poços de Caldas. Sua população de acordo com o Censo 2022 é de 24.089 habitantes.",
+      "destaques": []
     }
   ]
 }

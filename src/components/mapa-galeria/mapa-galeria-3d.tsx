@@ -102,7 +102,7 @@ export default function MapaGaleria3D({ destinos }: { destinos: DestinoMapa[] })
 
   return (
     <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-[#fdf2e7]">
-      <div className="relative h-[min(88vh,820px)] min-h-[560px] w-full touch-none">
+      <div className="relative h-[min(70vh,820px)] min-h-[420px] w-full touch-pan-y md:h-[min(88vh,820px)] md:min-h-[560px] md:touch-none">
         <Canvas
           className="!block !h-full !w-full"
           camera={{ fov: 36, position: [0, -34, 46], near: 0.1, far: 800 }}
@@ -149,8 +149,8 @@ export default function MapaGaleria3D({ destinos }: { destinos: DestinoMapa[] })
 
         {!ufAtiva && !erroGeo && (
           <div className="pointer-events-none absolute left-6 top-6 max-w-sm space-y-3 md:left-8 md:top-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1c3a59]/55">
-              Clique em um estado para aproximar
+            <p className="text-sm font-semibold text-[#1c3a59]/75">
+              Toque ou clique em um estado para aproximar
             </p>
             <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] font-medium text-[#1c3a59]/70">
               <li className="flex items-center gap-1.5">

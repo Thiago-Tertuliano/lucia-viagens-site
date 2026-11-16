@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Manrope, Syne } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@/components/analytics'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -7,17 +7,18 @@ import { WhatsappFab } from '@/components/whatsapp-fab'
 import { getSite } from '@/lib/content'
 import './globals.css'
 
-const syne = Syne({
+// Fontes hospedadas no próprio site (scripts/baixar-fontes.mjs): o build não depende do Google Fonts.
+const syne = localFont({
+  src: '../fonts/syne-var.woff2',
   variable: '--font-syne',
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: '500 800',
   display: 'swap',
 })
 
-const manrope = Manrope({
+const manrope = localFont({
+  src: '../fonts/manrope-var.woff2',
   variable: '--font-manrope',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: '400 700',
   display: 'swap',
 })
 

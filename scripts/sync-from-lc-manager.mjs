@@ -13,6 +13,7 @@
 import { mkdir, readdir, rm, unlink, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { aplicarEditorial, carregarEditorial } from './editorial.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '..')
@@ -201,18 +202,29 @@ async function buildFromSystem(v) {
   // Galeria operacional = espelho no site (só essas fotos; vazio se não houver)
   const fotosGaleria = await fetchGaleriaFotos(v.id, slug)
 
-  let capa = fotosGaleria[0] || null
-  // Confirmada/aberta sem galeria: pode usar capa da viagem só no card (não entra em fotos[])
-  if (!capa && situacao !== 'REALIZADA') {
-    try {
-      const detalhe = await fetchJson(`${LC_URL}/api/viagens/${v.id}`)
-      if (detalhe?.imagemCapaUrl?.startsWith('data:image/')) {
-        capa = await saveDataUrlImage(detalhe.imagemCapaUrl, `${slug}-capa`)
-      }
-    } catch {
-      /* ignore */
-    }
+  // Detalhe da viagem: descrição escrita no LC Manager + capa
+  let detalhe = null
+  try {
+    detalhe = await fetchJson(`${LC_URL}/api/viagens/${v.id}`)
+  } catch {
+    /* segue sem detalhe */
   }
+
+  // Roteiro operacional: as paradas viram "atrações" no site
+  let paradas = []
+  try {
+    const roteiro = await fetchJson(`${LC_URL}/api/viagens/${v.id}/roteiro`)
+    paradas = Array.isArray(roteiro?.paradas) ? roteiro.paradas : []
+  } catch {
+    /* sem roteiro */
+  }
+
+  let capa = fotosGaleria[0] || null
+  // Sem galeria: usa a capa cadastrada na viagem (card, hero e mapa). Não entra em fotos[]
+  if (!capa && detalhe?.imagemCapaUrl?.startsWith('data:image/')) {
+    capa = await saveDataUrlImage(detalhe.imagemCapaUrl, `${slug}-capa`)
+  }
+  const descricaoLc = (web?.descricao || detalhe?.descricao || '').trim() || null
 
   // REALIZADA (e demais): na página só a galeria — nunca inventa foto extra
   const fotos = fotosGaleria
@@ -240,7 +252,9 @@ async function buildFromSystem(v) {
 
   const full = {
     ...resumo,
-    descricao: web?.descricao || (situacao === 'REALIZADA' ? `Viagem realizada pela Lu&Cia para ${destinoNome}.` : null),
+    descricao:
+      descricaoLc ||
+      (situacao === 'REALIZADA' ? `Viagem realizada pela Lu&Cia para ${destinoNome}.` : null),
     roteiro: Array.isArray(web?.roteiro) ? web.roteiro : [],
     pontosTuristicos: Array.isArray(web?.pontosTuristicos) ? web.pontosTuristicos : [],
     inclui: Array.isArray(web?.inclui) ? web.inclui : [],
@@ -251,6 +265,10 @@ async function buildFromSystem(v) {
   }
   delete full._fromLcManager
   delete full._viagemId
+
+  aplicarEditorial(full, await carregarEditorial(), { paradas })
+  resumo.descricaoCurta = full.descricaoCurta
+  resumo.destaques = full.destaques
 
   return { resumo, full, fotosCount: fotos.length }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SectionHeading } from '@/components/section-heading'
+import { WhatsappButton } from '@/components/whatsapp-button'
 import { getSite } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -12,15 +13,15 @@ export const metadata: Metadata = {
 const PASSOS = [
   {
     titulo: 'Consulte a agenda',
-    texto: 'Em Viagens você vê saídas abertas e esgotadas, com datas, destino, duração e valor a partir de (quando informado).',
+    texto: 'Em Viagens estão as próximas saídas, com data, destino, duração e quantas vagas ainda restam.',
   },
   {
     titulo: 'Abra o detalhe da viagem',
     texto: 'Roteiro dia a dia, o que inclui, embarque, pontos turísticos e galeria de fotos — tudo antes de falar conosco.',
   },
   {
-    titulo: 'Explore o mapa e a galeria',
-    texto: 'Na Galeria, o mapa 3D mostra onde já fomos. Clique em um estado para ver as memórias daquela região.',
+    titulo: 'Veja quem já viajou com a gente',
+    texto: 'Na Galeria ficam as viagens que já fizemos, uma foto de capa para cada uma, e um mapa 3D de por onde passamos.',
   },
   {
     titulo: 'Fale no WhatsApp',
@@ -43,7 +44,7 @@ export default async function GuiaPage() {
         <ol className="mt-2 space-y-0 border-l border-line">
           {PASSOS.map((p, i) => (
             <li key={p.titulo} className="relative pb-10 pl-8 last:pb-0">
-              <span className="absolute -left-[11px] top-0 flex h-5 w-5 items-center justify-center rounded-full bg-[#1c3a59] text-[11px] font-bold text-[#fdf2e7]">
+              <span className="absolute -left-3 top-0 flex size-6 items-center justify-center rounded-full bg-[#1c3a59] text-xs font-bold text-[#fdf2e7]">
                 {i + 1}
               </span>
               <h2 className="font-display text-xl text-[#1c3a59]">{p.titulo}</h2>
@@ -59,17 +60,7 @@ export default async function GuiaPage() {
           <Link href="/galeria" className="btn border border-line bg-surface">
             Abrir galeria
           </Link>
-          {site.contato.whatsappLink && (
-            <a
-              href={site.contato.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn"
-              style={{ backgroundColor: '#d48995', color: '#fff' }}
-            >
-              Falar no WhatsApp
-            </a>
-          )}
+          {site.contato.whatsappLink && <WhatsappButton href={site.contato.whatsappLink} />}
         </div>
       </div>
     </div>

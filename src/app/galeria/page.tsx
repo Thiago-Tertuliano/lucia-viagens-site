@@ -1,23 +1,32 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SectionHeading } from '@/components/section-heading'
 import { MapaGaleria, type DestinoMapa } from '@/components/mapa-galeria'
+import { SectionHeading } from '@/components/section-heading'
 import { getViagem, getViagens, viagensRealizadas } from '@/lib/content'
 import { coordsDestino } from '@/lib/coords'
-import { formatPeriodo } from '@/lib/format'
+import { formatDate, localSeDiferenteDoTitulo } from '@/lib/format'
+import type { Foto, ViagemResumo } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'Galeria',
-  description: 'Mapa 3D e fotos das viagens realizadas pela Lu&Cia.',
+  description: 'Mapa 3D e fotos das viagens realizadas pela Lu&Cia. Escolha uma viagem para ver todas as fotos.',
 }
+
+function legendaLocal(resumo: ViagemResumo) {
+  return localSeDiferenteDoTitulo(resumo.titulo, resumo.destino) ?? ''
+}
+
+type Item = { resumo: ViagemResumo; capa: Foto | null; totalFotos: number }
 
 export default async function GaleriaPage() {
   const realizadas = viagensRealizadas(await getViagens())
-  const detalhes = await Promise.all(
-    realizadas.map(async (v) => ({
-      resumo: v,
-      full: await getViagem(v.slug),
-    })),
+
+  const itens: Item[] = await Promise.all(
+    realizadas.map(async (resumo) => {
+      const full = await getViagem(resumo.slug)
+      const fotos = full?.fotos ?? []
+      return { resumo, capa: resumo.capa ?? fotos[0] ?? null, totalFotos: fotos.length }
+    }),
   )
 
   const destinos: DestinoMapa[] = realizadas
@@ -39,70 +48,89 @@ export default async function GaleriaPage() {
     })
     .filter((d): d is DestinoMapa => d !== null)
 
+  // Agrupa por ano (viagensRealizadas já vem da mais recente para a mais antiga)
+  const porAno = new Map<string, Item[]>()
+  for (const item of itens) {
+    const ano = item.resumo.dataPartida.slice(0, 4)
+    porAno.set(ano, [...(porAno.get(ano) ?? []), item])
+  }
+
   return (
     <>
       <div className="container-page section-pad pb-6 md:pb-8">
         <SectionHeading
-          eyebrow="Memórias"
           title="Galeria de viagens realizadas"
-          description="Clique em um estado para aproximar e ver as viagens realizadas."
+          description="Escolha uma viagem para ver o roteiro e as fotos. Lá embaixo, o mapa mostra por onde já passamos."
         />
       </div>
 
-      <MapaGaleria destinos={destinos} />
-
-      <div className="container-page section-pad pt-10 md:pt-14">
-        {detalhes.length === 0 ? (
+      <div className="container-page pb-16 md:pb-24">
+        {itens.length === 0 ? (
           <p className="text-ink-soft">Ainda não há viagens realizadas publicadas.</p>
         ) : (
-          <div className="space-y-16">
-            {detalhes.map(({ resumo, full }) => {
-              const fotos = full?.fotos?.length ? full.fotos : resumo.capa ? [resumo.capa] : []
-              return (
-                <section id={`galeria-${resumo.slug}`} key={resumo.slug} className="scroll-mt-28 space-y-5">
-                  <div className="flex flex-wrap items-end justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-                        {formatPeriodo(resumo.dataPartida, resumo.dataRetorno)} · {resumo.destino.nome}
-                      </p>
-                      <h2 className="mt-1 font-display text-2xl md:text-3xl">
-                        <Link href={`/viagens/${resumo.slug}`} className="hover:text-rose">
-                          {resumo.titulo}
-                        </Link>
-                      </h2>
-                    </div>
-                    <Link
-                      href={`/viagens/${resumo.slug}`}
-                      className="text-sm font-semibold text-rose hover:underline"
-                    >
-                      Ver página →
-                    </Link>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-                    {fotos.map((foto, i) => (
-                      <figure
-                        key={`${foto.src}-${i}`}
-                        className={`media-zoom overflow-hidden bg-bg-deep ${
-                          i === 0 ? 'col-span-2 row-span-2 aspect-square md:aspect-auto md:min-h-[320px]' : 'aspect-square'
-                        }`}
+          <div className="space-y-14">
+            {[...porAno.entries()].map(([ano, lista]) => (
+              <section key={ano} aria-labelledby={`ano-${ano}`} className="space-y-6">
+                <h2 id={`ano-${ano}`} className="font-display text-3xl tabular-nums text-navy">
+                  {ano}
+                </h2>
+                <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {lista.map(({ resumo, capa, totalFotos }) => (
+                    <li key={resumo.slug} id={`galeria-${resumo.slug}`} className="scroll-mt-28">
+                      <Link
+                        href={`/viagens/${resumo.slug}`}
+                        className="media-zoom group relative block aspect-[4/5] overflow-hidden bg-cream-deep"
                       >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={foto.src}
-                          alt={foto.legenda || resumo.titulo}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
+                        {capa ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={capa.src}
+                            alt=""
+                            className="absolute inset-0 size-full object-cover"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="absolute inset-0 flex items-center justify-center px-6 text-center font-display text-xl text-navy/30">
+                            {resumo.destino.cidade || resumo.destino.nome}
+                          </span>
+                        )}
+                        <span
+                          className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent"
+                          aria-hidden
                         />
-                      </figure>
-                    ))}
-                  </div>
-                </section>
-              )
-            })}
+                        <span className="absolute inset-x-0 bottom-0 block p-5 text-cream">
+                          <span className="block font-display text-xl leading-snug">{resumo.titulo}</span>
+                          <span className="mt-1 block text-sm tabular-nums text-cream/85">
+                            {formatDate(resumo.dataPartida)}
+                            {legendaLocal(resumo) ? `, ${legendaLocal(resumo)}` : ''}
+                          </span>
+                          <span className="mt-3 inline-block text-sm font-semibold underline underline-offset-4 decoration-cream/50 group-hover:decoration-cream">
+                            {totalFotos > 0
+                              ? `Ver ${totalFotos} ${totalFotos === 1 ? 'foto' : 'fotos'}`
+                              : 'Ver a viagem'}
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
         )}
       </div>
+
+      {destinos.length > 0 && (
+        <section className="border-t border-line bg-cream">
+          <div className="container-page pb-6 pt-14 md:pt-20">
+            <SectionHeading
+              title="Por onde já passamos"
+              description="Gire o mapa e toque em um estado para ver as viagens que fizemos por lá."
+            />
+          </div>
+          <MapaGaleria destinos={destinos} />
+        </section>
+      )}
     </>
   )
 }

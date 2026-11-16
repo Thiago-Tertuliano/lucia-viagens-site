@@ -50,6 +50,23 @@ Para importar tudo (inclui rascunhos mapeados como abertas):
 SYNC_ALL=1 npm run sync:lc
 ```
 
+### Publicação automática (LC Manager → site em até ~5 min)
+
+`scripts/publicar-automatico.mjs` roda a cada 2 minutos pelo Agendador de Tarefas do Windows:
+confere se o LC Manager está aberto, sincroniza, e se algo mudou faz commit e push de `content/` e
+`public/web/` (o código nunca entra). O Netlify detecta o push e publica em 1–2 minutos.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\instalar-publicador.ps1           # liga
+powershell -ExecutionPolicy Bypass -File scripts\instalar-publicador.ps1 -Remover  # desliga
+node scripts/publicar-automatico.mjs --dry-run                                     # teste sem enviar
+```
+
+Segurança: se o LC Manager devolver zero viagens ou menos da metade das que o site já tem, a
+sincronização é descartada e o site continua como estava. Log em `scripts/publicador.log`.
+
+Requisitos: PC ligado, LC Manager aberto, Node e Git no PATH e login do GitHub já salvo (o mesmo do `git push`).
+
 ## Build
 
 ```bash

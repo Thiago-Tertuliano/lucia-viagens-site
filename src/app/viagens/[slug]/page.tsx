@@ -1,10 +1,20 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { GaleriaFotos } from '@/components/galeria-fotos'
 import { HideWaFab } from '@/components/hide-wa-fab'
 import { StatusBadge } from '@/components/status-badge'
+import { WhatsappButton } from '@/components/whatsapp-button'
 import { getAllViagemSlugs, getViagem } from '@/lib/content'
-import { destinoLabel, formatDate, formatPeriodo, formatPreco } from '@/lib/format'
+import {
+  chamadaPersonalizada,
+  destinoLabel,
+  localSeDiferenteDoTitulo,
+  formatDate,
+  formatPeriodo,
+  formatPreco,
+  listaNatural,
+} from '@/lib/format'
 
 export async function generateStaticParams() {
   const slugs = await getAllViagemSlugs()
@@ -21,8 +31,28 @@ export async function generateMetadata({
   if (!viagem) return { title: 'Viagem' }
   return {
     title: viagem.titulo,
-    description: viagem.chamada || viagem.descricao?.slice(0, 160) || undefined,
+    description:
+      chamadaPersonalizada(viagem.chamada) ||
+      viagem.descricaoCurta ||
+      viagem.descricao?.slice(0, 160) ||
+      undefined,
   }
+}
+
+function IconeCheck() {
+  return (
+    <svg className="mt-0.5 size-5 shrink-0 text-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  )
+}
+
+function IconeX() {
+  return (
+    <svg className="mt-0.5 size-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
+      <path d="M7 7l10 10M17 7L7 17" />
+    </svg>
+  )
 }
 
 export default async function ViagemPage({
@@ -41,16 +71,20 @@ export default async function ViagemPage({
 
   const realizada = viagem.situacao === 'REALIZADA'
   const confirmada = viagem.situacao === 'CONFIRMADA'
-  const ocultarPreco =
-    realizada || confirmada || viagem.precoAPartir == null
-  // REALIZADA: só o que está em fotos[] (espelho da galeria do LC Manager)
-  const fotosGaleria = realizada
-    ? viagem.fotos
-    : viagem.fotos.length > 0
-      ? viagem.fotos
-      : viagem.capa
-        ? [viagem.capa]
-        : []
+  const ocultarPreco = realizada || confirmada || viagem.precoAPartir == null
+
+  const atracoes = [...viagem.pontosTuristicos].sort((a, b) => (a.ordem ?? 999) - (b.ordem ?? 999))
+  const atracoesComHorario = atracoes.some((a) => a.horario)
+  const temInclusos = viagem.inclui.length > 0 || viagem.naoInclui.length > 0
+
+  const subtitulo =
+    chamadaPersonalizada(viagem.chamada) ||
+    (viagem.destaques && viagem.destaques.length > 0
+      ? `${realizada ? 'Passamos por' : 'Você vai conhecer'} ${listaNatural(viagem.destaques)}.`
+      : null)
+
+  // Realizada: só o que está em fotos[] (espelho da galeria do LC Manager)
+  const fotosGaleria = viagem.fotos
 
   return (
     <article>
@@ -61,7 +95,8 @@ export default async function ViagemPage({
           <style>{`body .wa-fab{display:none!important}`}</style>
         </>
       )}
-      <header className="relative min-h-[70svh] overflow-hidden bg-ink text-white">
+
+      <header className="relative min-h-[60svh] overflow-hidden bg-navy-deep text-white">
         {viagem.capa && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -72,85 +107,149 @@ export default async function ViagemPage({
           />
         )}
         <div className="absolute inset-0" style={{ background: 'var(--hero-veil)' }} />
-        <div className="relative container-page flex min-h-[60svh] flex-col justify-end py-12 md:min-h-[70svh] md:py-16">
+        <div className="relative container-page flex min-h-[60svh] flex-col justify-end py-12 md:py-16">
           <div className="mb-4">
             <StatusBadge situacao={viagem.situacao} tone="light" />
           </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-            {destinoLabel(viagem.destino)} · {viagem.dias} dias
+          <p className="text-base font-semibold text-[#e6bf7e]">
+            {[localSeDiferenteDoTitulo(viagem.titulo, viagem.destino), `${viagem.dias} ${viagem.dias === 1 ? 'dia' : 'dias'}`]
+              .filter(Boolean)
+              .join(', ')}
           </p>
-          <h1 className="mt-3 max-w-4xl font-display text-[clamp(2rem,6vw,3.8rem)] leading-[1.02] tracking-tight">
+          <h1 className="mt-2 max-w-4xl font-display text-[clamp(2rem,6vw,3.8rem)] leading-[1.04]">
             {viagem.titulo}
           </h1>
-          {viagem.chamada && (
-            <p className="mt-4 max-w-2xl text-base text-white/85 md:text-lg">{viagem.chamada}</p>
-          )}
+          {subtitulo && <p className="mt-4 max-w-2xl text-base text-white/90 md:text-lg">{subtitulo}</p>}
         </div>
       </header>
 
-      <div className="container-page grid gap-12 py-14 lg:grid-cols-[1.4fr_0.8fr]">
-        <div className="space-y-12">
+      <div className="container-page grid gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
+        <div className="min-w-0 space-y-16">
           {paragrafos.length > 0 && (
-            <section className="space-y-4">
-              <h2 className="font-display text-2xl">Sobre a viagem</h2>
-              {paragrafos.map((p) => (
-                <p key={p.slice(0, 40)} className="text-base leading-relaxed text-ink-soft">
-                  {p}
-                </p>
-              ))}
-            </section>
-          )}
-
-          {/* Viagem realizada: galeria em destaque para próximos passageiros */}
-          {realizada && fotosGaleria.length > 0 && (
-            <section className="space-y-6">
-              <div>
-                <h2 className="font-display text-2xl">Galeria da viagem</h2>
-                <p className="mt-2 text-sm text-ink-soft">
-                  Fotos desta saída — referência visual para quem pretende viajar conosco.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {fotosGaleria.map((foto, i) => (
-                  <figure
-                    key={`${foto.src}-${i}`}
-                    className={`media-zoom overflow-hidden bg-bg-deep ${
-                      i === 0 && fotosGaleria.length > 1 ? 'sm:col-span-2' : ''
-                    }`}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={foto.src}
-                      alt={foto.legenda || viagem.titulo}
-                      className={`w-full object-cover ${
-                        i === 0 && fotosGaleria.length > 1 ? 'aspect-[16/9]' : 'aspect-[4/3]'
-                      }`}
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                    />
-                    {foto.legenda && (
-                      <figcaption className="border-t border-line px-3 py-2 text-xs text-muted">
-                        {foto.legenda}
-                      </figcaption>
-                    )}
-                  </figure>
+            <section aria-labelledby="sobre" className="space-y-4">
+              <h2 id="sobre" className="font-display text-2xl md:text-3xl">
+                {realizada ? 'Sobre o destino' : 'Sobre a viagem'}
+              </h2>
+              <div className="max-w-[68ch] space-y-4">
+                {paragrafos.map((p) => (
+                  <p key={p.slice(0, 40)} className="text-base leading-[1.75] text-ink-soft md:text-[1.0625rem]">
+                    {p}
+                  </p>
                 ))}
               </div>
             </section>
           )}
 
+          {atracoes.length > 0 && (
+            <section aria-labelledby="atracoes" className="space-y-6">
+              <div className="space-y-2">
+                <h2 id="atracoes" className="font-display text-2xl md:text-3xl">
+                  {atracoesComHorario ? 'Paradas e atrações' : 'O que você vai conhecer'}
+                </h2>
+                <p className="max-w-[60ch] text-ink-soft">
+                  {realizada
+                    ? 'Os lugares que fizeram parte desta saída.'
+                    : atracoesComHorario
+                      ? 'A ordem e os horários previstos podem mudar conforme o trânsito e o ritmo do grupo.'
+                      : 'Os principais pontos desta saída. Os horários são combinados com o grupo antes do embarque.'}
+                </p>
+              </div>
+
+              {atracoesComHorario ? (
+                <ol className="border-l border-line">
+                  {atracoes.map((a, i) => (
+                    <li key={`${a.nome}-${i}`} className="relative pb-7 pl-7 last:pb-0">
+                      <span className="absolute -left-[5px] top-2 size-2.5 rounded-full bg-rose" aria-hidden />
+                      <div className="flex flex-wrap items-baseline gap-x-3">
+                        {a.horario && (
+                          <span className="text-sm font-semibold tabular-nums text-rose-deep">{a.horario}</span>
+                        )}
+                        <h3 className="font-display text-lg text-navy">{a.nome}</h3>
+                      </div>
+                      {a.descricao && (
+                        <p className="mt-1 max-w-[60ch] text-sm leading-relaxed text-ink-soft">{a.descricao}</p>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <ul className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+                  {atracoes.map((a, i) => (
+                    <li key={`${a.nome}-${i}`} className="border-t-2 border-navy pt-4">
+                      <h3 className="font-display text-lg leading-snug text-navy">{a.nome}</h3>
+                      {a.descricao && (
+                        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{a.descricao}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )}
+
+          {temInclusos && (
+            <section aria-labelledby="incluso" className="space-y-6">
+              <h2 id="incluso" className="font-display text-2xl md:text-3xl">
+                O que está incluso
+              </h2>
+              <div className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2">
+                {viagem.inclui.length > 0 && (
+                  <div className="bg-surface p-6">
+                    <h3 className="font-display text-lg text-navy">Está incluso</h3>
+                    <ul className="mt-4 space-y-3 text-[0.9375rem] leading-snug text-ink">
+                      {viagem.inclui.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <IconeCheck />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {viagem.naoInclui.length > 0 && (
+                  <div className="bg-cream-deep/50 p-6">
+                    <h3 className="font-display text-lg text-navy">Fica por sua conta</h3>
+                    <ul className="mt-4 space-y-3 text-[0.9375rem] leading-snug text-ink-soft">
+                      {viagem.naoInclui.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <IconeX />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              {!realizada && viagem.whatsappLink && (
+                <p className="text-sm text-ink-soft">
+                  Ficou com dúvida sobre algum item?{' '}
+                  <a
+                    href={viagem.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-rose-deep underline underline-offset-2"
+                  >
+                    Pergunte pelo WhatsApp
+                  </a>
+                  .
+                </p>
+              )}
+            </section>
+          )}
+
           {viagem.roteiro.length > 0 && (
-            <section className="space-y-6">
-              <h2 className="font-display text-2xl">Roteiro</h2>
-              <ol className="space-y-0 border-l border-line">
+            <section aria-labelledby="roteiro" className="space-y-6">
+              <h2 id="roteiro" className="font-display text-2xl md:text-3xl">
+                Roteiro dia a dia
+              </h2>
+              <ol className="border-l border-line">
                 {viagem.roteiro.map((dia) => (
-                  <li key={dia.dia} className="relative pl-8 pb-8 last:pb-0">
-                    <span className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-rose" />
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose">
-                      Dia {dia.dia}
-                    </p>
+                  <li key={dia.dia} className="relative pb-8 pl-8 last:pb-0">
+                    <span className="absolute -left-[5px] top-2 size-2.5 rounded-full bg-rose" aria-hidden />
+                    <p className="text-sm font-semibold text-rose-deep">Dia {dia.dia}</p>
                     <h3 className="mt-1 font-display text-xl">{dia.titulo}</h3>
                     {dia.descricao && (
-                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">{dia.descricao}</p>
+                      <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-ink-soft">{dia.descricao}</p>
                     )}
                   </li>
                 ))}
@@ -158,170 +257,120 @@ export default async function ViagemPage({
             </section>
           )}
 
-          {viagem.pontosTuristicos.length > 0 && (
-            <section className="space-y-6">
-              <h2 className="font-display text-2xl">Pontos turísticos</h2>
-              <p className="text-sm text-ink-soft">
-                Atrações previstas nesta saída — o cadastro definitivo vem do sistema de gestão.
-              </p>
-              <ol className="grid gap-4 sm:grid-cols-2">
-                {[...viagem.pontosTuristicos]
-                  .sort((a, b) => (a.ordem ?? 999) - (b.ordem ?? 999))
-                  .map((ponto, i) => (
-                    <li
-                      key={`${ponto.nome}-${i}`}
-                      className="rounded-lg border border-line bg-surface/80 p-4"
-                    >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-rose">
-                        {ponto.ordem != null ? `Ponto ${ponto.ordem}` : `Atração ${i + 1}`}
-                      </p>
-                      <h3 className="mt-1 font-display text-lg text-navy">{ponto.nome}</h3>
-                      {ponto.descricao && (
-                        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{ponto.descricao}</p>
-                      )}
-                    </li>
-                  ))}
-              </ol>
-            </section>
-          )}
-
-          {(viagem.inclui.length > 0 || viagem.naoInclui.length > 0) && (
-            <section className="grid gap-8 sm:grid-cols-2">
-              {viagem.inclui.length > 0 && (
-                <div>
-                  <h2 className="font-display text-2xl">Inclui</h2>
-                  <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-                    {viagem.inclui.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="text-ok">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {viagem.naoInclui.length > 0 && (
-                <div>
-                  <h2 className="font-display text-2xl">Não inclui</h2>
-                  <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-                    {viagem.naoInclui.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="text-muted">–</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
-          )}
-
-          {!realizada && viagem.fotos.length > 0 && (
-            <section className="space-y-6">
-              <h2 className="font-display text-2xl">Galeria</h2>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {viagem.fotos.map((foto) => (
-                  <figure key={foto.src} className="media-zoom overflow-hidden bg-bg-deep">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={foto.src}
-                      alt={foto.legenda || viagem.titulo}
-                      className="aspect-[4/3] w-full object-cover"
-                      loading="lazy"
-                    />
-                    {foto.legenda && (
-                      <figcaption className="border-t border-line px-3 py-2 text-xs text-muted">
-                        {foto.legenda}
-                      </figcaption>
-                    )}
-                  </figure>
-                ))}
+          {fotosGaleria.length > 0 && (
+            <section aria-labelledby="fotos" className="space-y-6">
+              <div className="space-y-2">
+                <h2 id="fotos" className="font-display text-2xl md:text-3xl">
+                  {realizada ? 'Fotos desta saída' : 'Fotos'}
+                </h2>
+                {realizada && (
+                  <p className="text-ink-soft">
+                    Clique em uma foto para ampliar. É assim que costuma ser a viagem com a gente.
+                  </p>
+                )}
               </div>
+              <GaleriaFotos fotos={fotosGaleria} titulo={viagem.titulo} />
             </section>
           )}
         </div>
 
-        <aside className="lg:sticky lg:top-24 lg:self-start">
-          <div className="space-y-5 border border-line bg-surface/80 p-6 backdrop-blur-sm">
-            <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-muted">Período</p>
-              <p className="mt-1 font-display text-xl">
-                {formatPeriodo(viagem.dataPartida, viagem.dataRetorno)}
-              </p>
-              <p className="mt-1 text-sm text-ink-soft">
-                {formatDate(viagem.dataPartida)} → {formatDate(viagem.dataRetorno)}
-              </p>
+        <aside className="lg:sticky lg:top-28 lg:self-start" aria-label="Resumo da viagem">
+          <div className="ticket">
+            <div className="space-y-5 p-6">
+              <div>
+                <p className="text-sm text-muted">Data</p>
+                <p className="mt-1 font-display text-2xl tabular-nums">
+                  {formatPeriodo(viagem.dataPartida, viagem.dataRetorno)}
+                </p>
+                {viagem.dataPartida !== viagem.dataRetorno && (
+                  <p className="mt-1 text-sm tabular-nums text-ink-soft">
+                    {formatDate(viagem.dataPartida)} a {formatDate(viagem.dataRetorno)}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <p className="text-sm text-muted">Destino</p>
+                <p className="mt-1 font-semibold">{destinoLabel(viagem.destino)}</p>
+              </div>
+
+              {realizada ? (
+                <div>
+                  <p className="text-sm text-muted">Situação</p>
+                  <p className="mt-1 font-semibold">Viagem realizada</p>
+                </div>
+              ) : (
+                <>
+                  {confirmada && (
+                    <div>
+                      <p className="text-sm text-muted">Situação</p>
+                      <p className="mt-1 font-semibold">Saída confirmada</p>
+                    </div>
+                  )}
+                  {!ocultarPreco && (
+                    <div>
+                      <p className="text-sm text-muted">A partir de</p>
+                      <p className="mt-1 font-display text-3xl tabular-nums text-navy">
+                        {formatPreco(viagem.precoAPartir)}
+                      </p>
+                    </div>
+                  )}
+                  {viagem.vagasRestantes != null && (
+                    <div>
+                      <p className="text-sm text-muted">Vagas</p>
+                      <p className="mt-1 font-semibold">
+                        {viagem.situacao === 'ESGOTADA'
+                          ? 'Esgotada. Entre na lista de espera.'
+                          : viagem.vagasRestantes === 1
+                            ? '1 vaga restante'
+                            : `${viagem.vagasRestantes} vagas restantes`}
+                      </p>
+                    </div>
+                  )}
+                  {viagem.embarque && (
+                    <div>
+                      <p className="text-sm text-muted">Embarque</p>
+                      <p className="mt-1 font-semibold">{viagem.embarque.local}</p>
+                      {viagem.embarque.horario && (
+                        <p className="text-sm tabular-nums text-ink-soft">{viagem.embarque.horario}</p>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
 
-            {realizada ? (
-              <div className="border-t border-line pt-5">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted">Status</p>
-                <p className="mt-1 font-display text-xl text-navy">Viagem realizada</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                  Confira a galeria ao lado — memórias desta saída para inspirar a próxima.
-                </p>
-              </div>
-            ) : (
-              <>
-                {confirmada && (
-                  <div className="border-t border-line pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Status</p>
-                    <p className="mt-1 font-display text-xl text-navy">Viagem confirmada</p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                      Saída confirmada — fale conosco pelo WhatsApp para reservar sua vaga.
-                    </p>
-                  </div>
-                )}
+            <div className="ticket-cut" aria-hidden />
 
-                {!ocultarPreco && (
-                  <div className="border-t border-line pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">A partir de</p>
-                    <p className="mt-1 font-display text-3xl text-navy">
-                      {formatPreco(viagem.precoAPartir)}
-                    </p>
-                  </div>
-                )}
-
-                {viagem.vagasRestantes != null && (
-                  <div className="border-t border-line pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Vagas</p>
-                    <p className="mt-1 text-sm font-medium">
-                      {viagem.situacao === 'ESGOTADA'
-                        ? 'Turma esgotada — lista de espera'
-                        : viagem.vagasRestantes === 1
-                          ? '1 vaga restante'
-                          : `${viagem.vagasRestantes} vagas restantes`}
-                    </p>
-                  </div>
-                )}
-
-                {viagem.embarque && (
-                  <div className="border-t border-line pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Embarque</p>
-                    <p className="mt-1 text-sm font-medium">{viagem.embarque.local}</p>
-                    {viagem.embarque.horario && (
-                      <p className="text-sm text-ink-soft">{viagem.embarque.horario}</p>
-                    )}
-                  </div>
-                )}
-
-                {viagem.whatsappLink && (
-                  <a
-                    href={viagem.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-accent w-full"
-                  >
-                    {viagem.situacao === 'ESGOTADA' ? 'Entrar na lista de espera' : 'Falar no WhatsApp'}
-                  </a>
-                )}
-              </>
-            )}
-
-            <Link href="/viagens" className="block text-center text-sm text-accent hover:underline">
-              ← Voltar para viagens
-            </Link>
+            <div className="space-y-3 p-6">
+              {realizada ? (
+                <>
+                  <p className="text-sm leading-relaxed text-ink-soft">
+                    Quer fazer um passeio assim? Veja as próximas saídas.
+                  </p>
+                  <Link href="/viagens" className="btn btn-primary w-full">
+                    Ver próximas viagens
+                  </Link>
+                </>
+              ) : (
+                <>
+                  {viagem.whatsappLink && (
+                    <WhatsappButton href={viagem.whatsappLink} size="lg" full>
+                      {viagem.situacao === 'ESGOTADA' ? 'Entrar na lista de espera' : 'Reservar pelo WhatsApp'}
+                    </WhatsappButton>
+                  )}
+                  <p className="text-center text-sm text-muted">Sem pagamento no site. A reserva é com a equipe.</p>
+                </>
+              )}
+            </div>
           </div>
+
+          <Link
+            href="/viagens"
+            className="mt-4 inline-block text-sm font-semibold text-navy underline underline-offset-4 decoration-navy/30 hover:decoration-navy"
+          >
+            Voltar para viagens
+          </Link>
         </aside>
       </div>
     </article>

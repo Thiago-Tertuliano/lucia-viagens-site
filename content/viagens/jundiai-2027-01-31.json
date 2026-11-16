@@ -20,12 +20,42 @@
     "altura": 1067,
     "legenda": null
   },
-  "descricao": null,
+  "descricao": "Venha viver um domingo inesquecível na tradicional Festa da Uva em Jundiaí com a Lu&Cia Viagens. Preparamos um roteiro focado em conforto e tranquilidade para você aproveitar o melhor da cultura, gastronomia e dos vinhos artesanais da região, sem se preocupar com trânsito, pedágio, estacionamento lotado ou Lei Seca. O passageiro terá o dia livre para passear pelos estandes, assistir às atrações culturais, pisar na uva e degustar as delícias locais no seu próprio ritmo.",
   "roteiro": [],
-  "pontosTuristicos": [],
-  "inclui": [],
-  "naoInclui": [],
+  "pontosTuristicos": [
+    {
+      "nome": "Estandes de gastronomia e vinhos",
+      "descricao": "Pratos típicos, vinhos artesanais e produtos da região para provar no seu ritmo.",
+      "ordem": 1
+    },
+    {
+      "nome": "Pisa da uva",
+      "descricao": "A cerimônia tradicional da festa, com a chance de pisar na uva.",
+      "ordem": 2
+    },
+    {
+      "nome": "Atrações culturais",
+      "descricao": "Música, dança e apresentações ao longo do dia, além de exposição e venda de uvas e frutas.",
+      "ordem": 3
+    }
+  ],
+  "inclui": [
+    "Transporte em ônibus de turismo, sem trânsito, pedágio ou estacionamento para você se preocupar",
+    "Acompanhamento da equipe Lu&Cia durante toda a saída",
+    "Tempo livre para passear pelos estandes no seu ritmo"
+  ],
+  "naoInclui": [
+    "Alimentação e bebidas",
+    "Ingressos e passeios opcionais",
+    "Compras e despesas pessoais"
+  ],
   "embarque": null,
   "fotos": [],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Festa%20da%20Uva%20-%20Jundia%C3%AD%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Festa%20da%20Uva%20-%20Jundia%C3%AD%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "Venha viver um domingo inesquecível na tradicional Festa da Uva em Jundiaí com a Lu&Cia Viagens.",
+  "destaques": [
+    "Estandes de gastronomia e vinhos",
+    "Pisa da uva",
+    "Atrações culturais"
+  ]
 }

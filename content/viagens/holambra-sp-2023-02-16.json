@@ -14,13 +14,20 @@
   "vagasRestantes": null,
   "situacao": "REALIZADA",
   "destaque": false,
-  "capa": null,
-  "descricao": "Viagem realizada pela Lu&Cia para Holambra - SP.",
+  "capa": {
+    "src": "/web/sync/holambra-sp-2023-02-16-capa.jpg",
+    "largura": 1600,
+    "altura": 1067,
+    "legenda": null
+  },
+  "descricao": "Holambra é um município brasileiro do estado de São Paulo e microrregião de Campinas, fundado em 14 de julho de 1948. Seu nome, junção de Holanda, América e Brasil, se dá em virtude da colônia neerlandesa que se firmou na antiga fazenda Ribeirão.",
   "roteiro": [],
   "pontosTuristicos": [],
   "inclui": [],
   "naoInclui": [],
   "embarque": null,
   "fotos": [],
-  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Holambra%20-%20SP%22%20no%20site%20e%20quero%20saber%20mais."
+  "whatsappLink": "https://wa.me/5511950755316?text=Ol%C3%A1!%20Vi%20a%20viagem%20%22Holambra%20-%20SP%22%20no%20site%20e%20quero%20saber%20mais.",
+  "descricaoCurta": "Holambra é um município brasileiro do estado de São Paulo e microrregião de Campinas, fundado em 14 de julho de 1948.",
+  "destaques": []
 }

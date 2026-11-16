@@ -6,7 +6,7 @@ import type { DestinoMapa } from './types'
 const MapaGaleria3D = dynamic(() => import('./mapa-galeria-3d'), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[min(88vh,820px)] min-h-[560px] w-full items-center justify-center bg-[#fdf2e7] text-sm text-[#1c3a59]/60">
+    <div className="flex h-[min(70vh,820px)] min-h-[420px] w-full md:h-[min(88vh,820px)] md:min-h-[560px] items-center justify-center bg-[#fdf2e7] text-sm text-[#1c3a59]/60">
       Carregando mapa…
     </div>
   ),
