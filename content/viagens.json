@@ -137,13 +137,13 @@
       "destaques": []
     },
     {
-      "slug": "santo-antonio-do-pinhal-sp-2026-07-04",
-      "titulo": "SANTO ANTONIO DO PINHAL - SP",
-      "chamada": "Viagem realizada — SANTO ANTONIO DO PINHAL - SP.",
+      "slug": "santo-antonio-do-pinhal-2026-07-04",
+      "titulo": "Santo Antônio do Pinhal - SP",
+      "chamada": "Viagem realizada — Santo Antônio do Pinhal/SP.",
       "destino": {
-        "nome": "SANTO ANTONIO DO PINHAL - SP",
-        "cidade": "SANTO ANTONIO DO PINHAL - SP",
-        "uf": null
+        "nome": "Santo Antônio do Pinhal - SP",
+        "cidade": "Santo Antônio do Pinhal",
+        "uf": "SP"
       },
       "dataPartida": "2026-07-04",
       "dataRetorno": "2026-07-04",
@@ -153,12 +153,12 @@
       "situacao": "REALIZADA",
       "destaque": false,
       "capa": {
-        "src": "/web/sync/santo-antonio-do-pinhal-sp-2026-07-04-capa.jpg",
+        "src": "/web/sync/santo-antonio-do-pinhal-2026-07-04-capa.jpg",
         "largura": 1600,
         "altura": 1067,
         "legenda": null
       },
-      "descricaoCurta": "Viagem realizada pela Lu&Cia para SANTO ANTONIO DO PINHAL - SP.",
+      "descricaoCurta": "Viagem realizada pela Lu&Cia para Santo Antônio do Pinhal - SP.",
       "destaques": []
     },
     {
